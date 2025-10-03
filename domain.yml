@@ -1,33 +1,32 @@
 version: "3.1"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - saludar
+  - despedirse
+  - saber_como_estas
+  - preguntar_clima
+  - preguntar_familia
+  - eres_bot
+
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+  utter_saludar:
+  - text: "Hola! ¿En qué puedo ayudarte?"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_despedirse:
+  - text: "¡Hasta luego! Que tengas un buen día."
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  utter_saber_como_estas:
+  - text: "Estoy bien, gracias por preguntar."
 
-  utter_happy:
-  - text: "Great, carry on!"
+  utter_preguntar_clima:
+  - text: "Hoy hace buen clima."
 
-  utter_goodbye:
-  - text: "Bye"
+  utter_preguntar_familia:
+  - text: "No tengo información sobre mi familia."
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  utter_eres_bot:
+  - text: "Sí, soy un bot. ¿En qué puedo ayudarte?"
 
 session_config:
   session_expiration_time: 60

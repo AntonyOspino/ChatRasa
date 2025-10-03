@@ -2,12 +2,32 @@ version: "3.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+- rule: Saludar al usuario
   steps:
-  - intent: goodbye
-  - action: utter_goodbye
+  - intent: saludar
+  - action: utter_saludar
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Despedirse del usuario
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: despedirse
+  - action: utter_despedirse
+
+- rule: Responder a "¿cómo estás?"
+  steps:
+  - intent: saber_como_estas
+  - action: utter_saber_como_estas
+
+- rule: Responder sobre el clima
+  steps:
+  - intent: preguntar_clima
+  - action: utter_preguntar_clima
+
+- rule: Responder sobre la familia
+  steps:
+  - intent: preguntar_familia
+  - action: utter_preguntar_familia
+
+- rule: Responder a eres un bot
+  steps:
+  - intent: eres_bot
+  - action: utter_eres_bot

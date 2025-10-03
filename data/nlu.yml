@@ -1,91 +1,126 @@
 version: "3.1"
 
 nlu:
-- intent: greet
+- intent: saludar
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - hola
+    - buenos dias
+    - buenas tardes
+    - buenas noches
+    - que tal
+    - que hay
+    - que pasa
+    - que hubo
+    - que onda
+    - hola che
+    - buenos dias che
+    - buenas tardes che
+    - buenas noches che
+    - que hubo che
+    - que tal che
+    - que hay che
+    - que pasa che
+    - que onda che
 
-- intent: goodbye
+- intent: despedirse
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - chau
+    - adios
+    - hasta luego
+    - buenas noches
+    - hasta pronto
+    - hasta la vista
+    - nos vemos
+    - nos estamos viendo
+    - hablamos luego
+    - hablamos pronto
+    - hablamos mas tarde
+    - me voy
+    - me tengo que ir
+    - tengo que irme
+    - me tengo que ir ya
+    - tengo que irme ya
+    - me voy ya
+    - me voy ahora
+    - tengo que irme ahora
+    - me tengo que ir ahora
+    - nos estamos viendo luego
+    - nos estamos viendo pronto
 
-- intent: affirm
+- intent: saber_como_estas
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - ¿como estas?
+    - ¿como te va?
+    - ¿como andas?
+    - ¿como andas vos?
+    - ¿como estas vos?
+    - ¿como te va vos?
+    - ¿como andas che?
+    - ¿como estas che?
+    - ¿como te va che?
+    - ¿que tal estas?
+    - ¿que tal andas?
+    - ¿que tal estas vos?
+    - ¿que tal andas vos?
+    - ¿que tal estas che?
+    - ¿que tal andas che?
+    - ¿que hay de nuevo?
+    - ¿que hay de nuevo che?
+    - ¿que hay de nuevo vos?
 
-- intent: deny
+- intent: preguntar_clima
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - ¿como esta el clima?
+    - ¿que tiempo hace?
+    - ¿que clima hay?
+    - ¿como va el clima?
+    - ¿que tal el clima?
+    - ¿como esta el clima hoy?
+    - ¿que tiempo hace hoy?
+    - ¿que clima hay hoy?
+    - ¿como va el clima hoy?
+    - ¿que tal el clima hoy?
+    - ¿como esta el clima para hoy?
+    - ¿que tiempo hace para hoy?
+    - ¿que clima hay para hoy?
+    - ¿como va el clima para hoy?
+    - ¿que tal el clima para hoy?
+    - ¿como esta el clima che?
+    - ¿que tiempo hace che?
+    - ¿que clima hay che?
 
-- intent: mood_great
+- intent: preguntar_familia
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - ¿tienes familia?
+    - ¿tienes hermanos?
+    - ¿tienes padres?
+    - ¿tienes hijos?
+    - ¿tienes pareja?
+    - ¿tienes familia che?
+    - ¿tienes hermanos che?
+    - ¿tienes padres che?
+    - ¿tienes hijos che?
+    - ¿tienes pareja che?
+    - ¿tienes familia vos?
+    - ¿tienes hermanos vos?
+    - ¿tienes padres vos?
+    - ¿tienes hijos vos?
+    - ¿tienes pareja vos?
 
-- intent: mood_unhappy
+- intent: eres_bot
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
-
-- intent: bot_challenge
-  examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - ¿eres un bot?
+    - ¿eres un robot?
+    - ¿eres una inteligencia artificial?
+    - ¿eres una IA?
+    - ¿eres un asistente virtual?
+    - ¿eres un bot che?
+    - ¿eres un robot che?
+    - ¿eres una inteligencia artificial che?
+    - ¿eres una IA che?
+    - ¿eres un asistente virtual che?
+    - ¿eres un bot vos?
+    - ¿eres un robot vos?
+    - ¿eres una inteligencia artificial vos?
+    - ¿eres una IA vos?
+    - ¿eres un asistente virtual vos?
