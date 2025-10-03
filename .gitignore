@@ -1,5 +1,8 @@
 .rasa
+.rasa/cache/
+.rasa/tmp/
 models
-__pycache__
+__pycache__/
 *.pyc
 myvenv/
+.env
