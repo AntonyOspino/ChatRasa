@@ -2,7 +2,9 @@
 .rasa/cache/
 .rasa/tmp/
 models
+models/
 __pycache__/
 *.pyc
 myvenv/
 .env
+venv/
