@@ -3,30 +3,189 @@ version: "3.1"
 intents:
   - saludar
   - despedirse
-  - saber_como_estas
-  - preguntar_clima
-  - preguntar_familia
-  - eres_bot
+  - login
+  - responder_si
+  - responder_no
+  - respuesta_invalida
 
+actions:
+  - action_process_login
+  - action_submit_diagnosis
+  - action_end_session
+  - validate_diagnosis_form
+
+slots:
+  username:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: username
+      intent: login
+  identificacion:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+      intent: login
+  nombre:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+      intent: login
+  apellido:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+      intent: login
+  rol:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+      intent: login
+  respuestas:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  question_count:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+      intent: login
+  diagnostico_nombre:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  diagnostico_descripcion:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  diagnostico_recomendaciones:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  diagnostico_nivel_gravedad:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings: []
+  answer_1:
+    type: bool
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: responder_si
+        value: true
+        conditions:
+          - active_loop: diagnosis_form
+      - type: from_intent
+        intent: responder_no
+        value: false
+        conditions:
+          - active_loop: diagnosis_form
+  answer_2:
+    type: bool
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: responder_si
+        value: true
+        conditions:
+          - active_loop: diagnosis_form
+      - type: from_intent
+        intent: responder_no
+        value: false
+        conditions:
+          - active_loop: diagnosis_form
+  answer_3:
+    type: bool
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: responder_si
+        value: true
+        conditions:
+          - active_loop: diagnosis_form
+      - type: from_intent
+        intent: responder_no
+        value: false
+        conditions:
+          - active_loop: diagnosis_form
+  answer_4:
+    type: bool
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: responder_si
+        value: true
+        conditions:
+          - active_loop: diagnosis_form
+      - type: from_intent
+        intent: responder_no
+        value: false
+        conditions:
+          - active_loop: diagnosis_form
+  answer_5:
+    type: bool
+    influence_conversation: false
+    mappings:
+      - type: from_intent
+        intent: responder_si
+        value: true
+        conditions:
+          - active_loop: diagnosis_form
+      - type: from_intent
+        intent: responder_no
+        value: false
+        conditions:
+          - active_loop: diagnosis_form
 
 responses:
   utter_saludar:
-  - text: "Hola! ¿En qué puedo ayudarte?"
-
+  - text: "Hola! Por favor, inicia sesión con tu usuario y contraseña."
   utter_despedirse:
   - text: "¡Hasta luego! Que tengas un buen día."
+  utter_ask_login:
+  - text: "Por favor, proporciona tu usuario y contraseña en el formato: usuario: <tu_usuario>, contraseña: <tu_contraseña>."
+  utter_login_failed:
+  - text: "Usuario o contraseña incorrectos. Por favor, intenta de nuevo."
+  utter_ask_answer_1:
+  - text: "¿Siente dolor en el pecho, presión o ardor?"
+  utter_ask_answer_2:
+  - text: "¿Experimenta falta de aire o dificultad para respirar?"
+  utter_ask_answer_3:
+  - text: "¿Tiene hinchazón en los pies, tobillos o piernas?"
+  utter_ask_answer_4:
+  - text: "¿Ha notado palpitaciones o latidos irregulares?"
+  utter_ask_answer_5:
+  - text: "¿Ha sentido mareos o desmayos con frecuencia?"
+  utter_diagnosis_result:
+  - text: "Diagnóstico: {diagnostico_nombre}\nDescripción: {diagnostico_descripcion}\nRecomendaciones: {diagnostico_recomendaciones}\nNivel de gravedad: {diagnostico_nivel_gravedad}"
+  utter_diagnosis_failed:
+  - text: "No se pudo obtener un diagnóstico. Por favor, intenta de nuevo más tarde."
+  utter_invalid_response:
+  - text: "Respuesta inválida. Por favor, responde con 'sí' o 'no'."
 
-  utter_saber_como_estas:
-  - text: "Estoy bien, gracias por preguntar."
-
-  utter_preguntar_clima:
-  - text: "Hoy hace buen clima."
-
-  utter_preguntar_familia:
-  - text: "No tengo información sobre mi familia."
-
-  utter_eres_bot:
-  - text: "Sí, soy un bot. ¿En qué puedo ayudarte?"
+forms:
+  diagnosis_form:
+    required_slots:
+      - answer_1
+      - answer_2
+      - answer_3
+      - answer_4
+      - answer_5
 
 session_config:
   session_expiration_time: 60

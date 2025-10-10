@@ -1,33 +1,93 @@
 version: "3.1"
 
 rules:
-
-- rule: Saludar al usuario
+# --- SALUDO E INICIO DE SESIÓN ---
+- rule: Saludar y pedir login
+  condition:
+  - active_loop: null
   steps:
   - intent: saludar
   - action: utter_saludar
+  - action: utter_ask_login
 
+# --- ACTIVAR FORMULARIO DESPUÉS DE LOGIN ---
+- rule: Activar formulario después de login
+  condition:
+  - slot_was_set:
+      - rol: "Médico"
+  steps:
+  - action: diagnosis_form
+  - active_loop: diagnosis_form
+
+
+# --- PREGUNTAS DEL FORMULARIO ---
+- rule: Ask next question after answer_1
+  condition:
+  - slot_was_set:
+      - answer_1
+  steps:
+  - action: utter_ask_answer_2
+
+- rule: Ask next question after answer_2
+  condition:
+  - slot_was_set:
+      - answer_2
+  steps:
+  - action: utter_ask_answer_3
+
+- rule: Ask next question after answer_3
+  condition:
+  - slot_was_set:
+      - answer_3
+  steps:
+  - action: utter_ask_answer_4
+
+- rule: Ask next question after answer_4
+  condition:
+  - slot_was_set:
+      - answer_4
+  steps:
+  - action: utter_ask_answer_5
+
+# --- ENVÍO DE DIAGNÓSTICO ---
+- rule: Enviar diagnóstico tras completar formulario
+  condition:
+  - active_loop: diagnosis_form
+  - slot_was_set:
+      - answer_1
+      - answer_2
+      - answer_3
+      - answer_4
+      - answer_5
+  steps:
+  - action: diagnosis_form
+  - active_loop: null
+  - action: action_submit_diagnosis
+  - action: utter_diagnosis_result
+
+# --- MANEJO DE ERROR O FALLO EN DIAGNÓSTICO ---
+- rule: Manejar fallo en diagnóstico
+  condition:
+  - slot_was_set:
+      - answer_5
+  - slot_was_set:
+      - diagnostico_nombre: null
+  steps:
+  - action: utter_diagnosis_failed
+  - action: action_end_session
+
+# --- DESPEDIDA Y CIERRE DE SESIÓN ---
 - rule: Despedirse del usuario
   steps:
   - intent: despedirse
   - action: utter_despedirse
+  - action: action_end_session
 
-- rule: Responder a "¿cómo estás?"
+# --- RESPUESTAS INVÁLIDAS ---
+- rule: Manejar respuestas inválidas en el formulario
+  condition:
+  - active_loop: diagnosis_form
   steps:
-  - intent: saber_como_estas
-  - action: utter_saber_como_estas
-
-- rule: Responder sobre el clima
-  steps:
-  - intent: preguntar_clima
-  - action: utter_preguntar_clima
-
-- rule: Responder sobre la familia
-  steps:
-  - intent: preguntar_familia
-  - action: utter_preguntar_familia
-
-- rule: Responder a eres un bot
-  steps:
-  - intent: eres_bot
-  - action: utter_eres_bot
+  - intent: respuesta_invalida
+  - action: utter_invalid_response
+  - action: diagnosis_form

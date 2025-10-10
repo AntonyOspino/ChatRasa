@@ -1,31 +1,17 @@
 version: "3.1"
 
 stories:
-
-- story: historia de saludo
+- story: Handle successful login and start diagnosis
   steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: saber_como_estas
-  - action: utter_saber_como_estas
+  - intent: login
+  - action: action_process_login
+  - slot_was_set:
+      - rol: "Médico"
+  - active_loop: diagnosis_form
 
-- story: historia de clima
+- story: completed diagnosis form
   steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: preguntar_clima
-  - action: utter_preguntar_clima
-
-- story: historia de familia
-  steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: preguntar_familia
-  - action: utter_preguntar_familia
-
-- story: historia de despedida
-  steps:
-  - intent: despedirse
-  - action: utter_despedirse
-  - intent: eres_bot
-  - action: utter_eres_bot
+  - action: diagnosis_form
+  - active_loop: null
+  - action: action_submit_diagnosis
+  - action: utter_diagnosis_result
