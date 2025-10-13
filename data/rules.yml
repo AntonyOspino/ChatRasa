@@ -24,19 +24,17 @@ rules:
   - active_loop: diagnosis_form
 
 # --- ENVÍO DE DIAGNÓSTICO (Regla 4 se convierte en Regla 3) ---
-- rule: Enviar diagnóstico tras completar formulario
-  condition:
-  - active_loop: diagnosis_form
-  - slot_was_set:
-      - answer_1
-      - answer_2
-      - answer_3
-      - answer_4
-      - answer_5
+# rules.yml
+
+# ... (Reglas 1 y 2 anteriores)
+
+- rule: Enviar Diagnóstico tras completar formulario
   steps:
-  - active_loop: null
-  - action: action_submit_diagnosis
-  - action: utter_diagnosis_result
+  - action: diagnosis_form # Paso 1: El formulario se ejecutó por última vez
+  - active_loop: null # Paso 2: El loop ya no está activo
+  - action: action_submit_diagnosis # Paso 3: Llama a la API
+  - action: utter_diagnosis_result # Paso 4: Muestra el diagnóstico
+  - action: action_end_session # Paso 5: Finaliza la sesión
 
 # --- MANEJO DE ERROR O FALLO EN DIAGNÓSTICO (Regla 5 se convierte en Regla 4) ---
 - rule: Manejar fallo en diagnóstico
