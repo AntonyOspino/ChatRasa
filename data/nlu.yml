@@ -20,6 +20,7 @@ nlu:
     - que hay che
     - que pasa che
     - que onda che
+
 - intent: despedirse
   examples: |
     - chau
@@ -43,18 +44,18 @@ nlu:
     - me tengo que ir ahora
     - nos estamos viendo luego
     - nos estamos viendo pronto
+
 - intent: login
   examples: |
-    - usuario: carlos.rod, contraseña: clave456
-    - iniciar sesion usuario: carlos.rod, contraseña: clave456
-    - login con usuario: carlos.rod, contraseña: clave456
-    - ingresa usuario: carlos.rod, contraseña: clave456
-    - usuario carlos.rod contraseña clave456
-    - iniciar con carlos.rod y clave456
-    - login carlos.rod clave456
-    - usuario: carlos.rod y contraseña: clave456
-    - usuario: carlos.rod, pass: clave456
-    - carlos.rod clave456
+    - iniciar sesión con usuario [juanperez](username) y contraseña [12345](password)
+    - login con usuario [maria123](username) y contraseña [password](password)
+    - usuario: [carlos.rod](username) contraseña: [clave456](password)
+    - username: [usuario_ejemplo](username), password: [pass123](password)
+    - usuario: [a.b](username) y clave [1](password)
+    - mi usuario es [doctorX](username) y mi contraseña es [secreta](password)
+    - [admin_1](username) / [clave_maestra](password)
+    - iniciar sesión con usuario: [user_1](username) y contraseña: [pass_a](password)
+
 - intent: responder_si
   examples: |
     - sí

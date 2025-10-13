@@ -14,6 +14,10 @@ actions:
   - action_end_session
   - validate_diagnosis_form
 
+entities:
+  - username
+  - password
+
 slots:
   username:
     type: text
@@ -21,7 +25,12 @@ slots:
     mappings:
     - type: from_entity
       entity: username
-      intent: login
+  password:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: password
   identificacion:
     type: text
     influence_conversation: false
@@ -90,11 +99,13 @@ slots:
         value: true
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_1
       - type: from_intent
         intent: responder_no
         value: false
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_1
   answer_2:
     type: bool
     influence_conversation: false
@@ -104,11 +115,13 @@ slots:
         value: true
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_2
       - type: from_intent
         intent: responder_no
         value: false
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_2
   answer_3:
     type: bool
     influence_conversation: false
@@ -118,11 +131,13 @@ slots:
         value: true
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_3
       - type: from_intent
         intent: responder_no
         value: false
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_3
   answer_4:
     type: bool
     influence_conversation: false
@@ -132,11 +147,19 @@ slots:
         value: true
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_4
       - type: from_intent
         intent: responder_no
         value: false
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_4
+      - type: from_intent
+        intent: responder_no
+        value: false
+        conditions:
+          - active_loop: diagnosis_form
+            requested_slot: answer_4
   answer_5:
     type: bool
     influence_conversation: false
@@ -146,15 +169,18 @@ slots:
         value: true
         conditions:
           - active_loop: diagnosis_form
+            requested_slot: answer_5
       - type: from_intent
         intent: responder_no
         value: false
         conditions:
           - active_loop: diagnosis_form
-
+            requested_slot: answer_5
 responses:
   utter_saludar:
   - text: "Hola! Por favor, inicia sesión con tu usuario y contraseña."
+  utter_login_success:
+  - text: "¡Bienvenido(a), {rol} {nombre} {apellido}! Vamos a realizar un diagnóstico. Responde las siguientes preguntas con 'sí' o 'no'."
   utter_despedirse:
   - text: "¡Hasta luego! Que tengas un buen día."
   utter_ask_login:

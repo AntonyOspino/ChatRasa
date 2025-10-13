@@ -1,7 +1,7 @@
 version: "3.1"
 
 rules:
-# --- SALUDO E INICIO DE SESIÓN ---
+# --- 1. SALUDO E INICIO DE SESIÓN ---
 - rule: Saludar y pedir login
   condition:
   - active_loop: null
@@ -10,46 +10,20 @@ rules:
   - action: utter_saludar
   - action: utter_ask_login
 
-# --- ACTIVAR FORMULARIO DESPUÉS DE LOGIN ---
-- rule: Activar formulario después de login
-  condition:
-  - slot_was_set:
-      - rol: "Médico"
+# --- ¡NUEVA LÓGICA DE LOGIN! ---
+# COMBINAMOS el intent: login con el efecto del login exitoso.
+- rule: Login exitoso e inicio de diagnóstico
   steps:
+  - intent: login
+  - action: action_process_login
+  - slot_was_set: # Verificamos que el slot se estableció (por login exitoso)
+      - rol: "Médico"
+  # Ahora, el flujo es una cadena completa y la historia no puede contradecirla.
+  - action: utter_login_success 
   - action: diagnosis_form
   - active_loop: diagnosis_form
 
-
-# --- PREGUNTAS DEL FORMULARIO ---
-- rule: Ask next question after answer_1
-  condition:
-  - slot_was_set:
-      - answer_1
-  steps:
-  - action: utter_ask_answer_2
-
-- rule: Ask next question after answer_2
-  condition:
-  - slot_was_set:
-      - answer_2
-  steps:
-  - action: utter_ask_answer_3
-
-- rule: Ask next question after answer_3
-  condition:
-  - slot_was_set:
-      - answer_3
-  steps:
-  - action: utter_ask_answer_4
-
-- rule: Ask next question after answer_4
-  condition:
-  - slot_was_set:
-      - answer_4
-  steps:
-  - action: utter_ask_answer_5
-
-# --- ENVÍO DE DIAGNÓSTICO ---
+# --- ENVÍO DE DIAGNÓSTICO (Regla 4 se convierte en Regla 3) ---
 - rule: Enviar diagnóstico tras completar formulario
   condition:
   - active_loop: diagnosis_form
@@ -60,12 +34,11 @@ rules:
       - answer_4
       - answer_5
   steps:
-  - action: diagnosis_form
   - active_loop: null
   - action: action_submit_diagnosis
   - action: utter_diagnosis_result
 
-# --- MANEJO DE ERROR O FALLO EN DIAGNÓSTICO ---
+# --- MANEJO DE ERROR O FALLO EN DIAGNÓSTICO (Regla 5 se convierte en Regla 4) ---
 - rule: Manejar fallo en diagnóstico
   condition:
   - slot_was_set:
@@ -76,14 +49,14 @@ rules:
   - action: utter_diagnosis_failed
   - action: action_end_session
 
-# --- DESPEDIDA Y CIERRE DE SESIÓN ---
+# --- DESPEDIDA Y CIERRE DE SESIÓN (Regla 6 se convierte en Regla 5) ---
 - rule: Despedirse del usuario
   steps:
   - intent: despedirse
   - action: utter_despedirse
   - action: action_end_session
 
-# --- RESPUESTAS INVÁLIDAS ---
+# --- RESPUESTAS INVÁLIDAS EN FORMULARIO (Regla 7 se convierte en Regla 6) ---
 - rule: Manejar respuestas inválidas en el formulario
   condition:
   - active_loop: diagnosis_form

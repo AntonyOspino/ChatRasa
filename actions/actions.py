@@ -1,87 +1,57 @@
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker, FormValidationAction
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.events import SlotSet, FollowupAction, AllSlotsReset
+from rasa_sdk.events import SlotSet, FollowupAction, AllSlotsReset, ActiveLoop
 import requests
 import re
+
+# actions/actions.py
 
 class ActionProcessLogin(Action):
     def name(self) -> Text:
         return "action_process_login"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # Extract username and password from user input
-        user_message = tracker.latest_message.get("text", "")
-        print(f"🔍 Mensaje recibido: '{user_message}'")
-        username_match = re.search(r"(?:usuario:\s*)?([^\s,]+)", user_message, re.IGNORECASE)
-        password_match = re.search(r"(?:contraseña:\s*)?([^\s,]+)$", user_message, re.IGNORECASE)
+        # Extraer credenciales desde los slots
+        username = tracker.get_slot("username")
+        password = tracker.get_slot("password")
+        
+        print(f"🔍 Intentando login con usuario: '{username}' y contraseña: '{password}'")
 
+        if not username or not password:
+            print("❌ Faltan credenciales en los slots.")
+            dispatcher.utter_message(text="No entendí tu usuario o contraseña. Por favor, dímelos de nuevo.")
+            return [SlotSet("username", None), SlotSet("password", None)]
 
-        if not username_match or not password_match:
-            print("❌ No se pudo extraer credenciales con regex")
-
-            dispatcher.utter_message(response="utter_login_failed")
-            return [
-                SlotSet("rol", None),
-                SlotSet("username", None),
-                SlotSet("identificacion", None),
-                SlotSet("nombre", None),
-                SlotSet("apellido", None)
-            ]
-
-        username = username_match.group(1)
-        password = password_match.group(1)
-
-        # Simulate API call to login endpoint
         try:
+            # Llamada a tu API de login
             response = requests.post(
                 "http://localhost:3000/usuario/login",
                 json={"username": username, "password": password}
             )
             response.raise_for_status()
             data = response.json()
-            print(f"✅ Respuesta de login: {data}")
+            print(f"✅ Respuesta de la API de login: {data}")
 
             if data.get("message") == "Inicio de sesión exitoso":
                 user_data = data.get("data", {})
-                dispatcher.utter_message(
-                    text=f"¡Bienvenido(a), {user_data.get('rol')} {user_data.get('nombre')} {user_data.get('apellido')}! "
-                         "Vamos a realizar un diagnóstico. Responde las siguientes preguntas con 'sí' o 'no'."
-                )
-                events = [
-                    SlotSet("username", username),
+                
+                # Preparamos los slots para el formulario y activamos el form
+                return [
                     SlotSet("identificacion", user_data.get("identificacion")),
                     SlotSet("nombre", user_data.get("nombre")),
                     SlotSet("apellido", user_data.get("apellido")),
                     SlotSet("rol", user_data.get("rol")),
                     SlotSet("respuestas", []),
-                    SlotSet("question_count", 0),
-                    SlotSet("answer_1", None),
-                    SlotSet("answer_2", None),
-                    SlotSet("answer_3", None),
-                    SlotSet("answer_4", None),
-                    SlotSet("answer_5", None),
                 ]
-                events.append(FollowupAction(name="diagnosis_form"))
-                return events
             else:
                 dispatcher.utter_message(response="utter_login_failed")
-                return [
-                    SlotSet("rol", None),
-                    SlotSet("username", None),
-                    SlotSet("identificacion", None),
-                    SlotSet("nombre", None),
-                    SlotSet("apellido", None)
-                ]
-        except requests.RequestException:
-            dispatcher.utter_message(response="utter_login_failed")
-            return [
-                SlotSet("rol", None),
-                SlotSet("username", None),
-                SlotSet("identificacion", None),
-                SlotSet("nombre", None),
-                SlotSet("apellido", None)
-            ]
+                return [SlotSet("username", None), SlotSet("password", None)]
+
+        except requests.RequestException as e:
+            print(f"❌ Error en la API: {e}")
+            dispatcher.utter_message(text="Hubo un problema de conexión al intentar iniciar sesión. Inténtalo más tarde.")
+            return [SlotSet("username", None), SlotSet("password", None)]
 
 class ValidateDiagnosisForm(FormValidationAction):
     def name(self) -> Text:
