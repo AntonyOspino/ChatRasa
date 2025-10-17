@@ -5,7 +5,9 @@ from rasa_sdk.events import SlotSet, FollowupAction, AllSlotsReset, ActiveLoop
 import requests
 import re
 
-# actions/actions.py
+BASE_URL = "https://apisistemaexperto.vercel.app"
+
+# Acción para procesar el login del usuario
 
 class ActionProcessLogin(Action):
     def name(self) -> Text:
@@ -26,7 +28,7 @@ class ActionProcessLogin(Action):
         try:
             # Llamada a tu API de login
             response = requests.post(
-                "http://localhost:3000/usuario/login",
+                f"{BASE_URL}/usuario/login",
                 json={"username": username, "password": password}
             )
             response.raise_for_status()
@@ -52,6 +54,8 @@ class ActionProcessLogin(Action):
             print(f"❌ Error en la API: {e}")
             dispatcher.utter_message(text="Hubo un problema de conexión al intentar iniciar sesión. Inténtalo más tarde.")
             return [SlotSet("username", None), SlotSet("password", None)]
+        
+# Validación del formulario de diagnóstico
 
 class ValidateDiagnosisForm(FormValidationAction):
     def name(self) -> Text:
@@ -120,7 +124,8 @@ class ValidateDiagnosisForm(FormValidationAction):
         respuestas = tracker.get_slot("respuestas") or []
         respuestas.append({"id_pregunta": 5, "respuesta_valor": slot_value})
         return {"answer_5": slot_value, "respuestas": respuestas}
-    
+
+# Acción para enviar las respuestas y obtener el diagnóstico    
 
 class ActionSubmitDiagnosis(Action):
     def name(self) -> Text:
@@ -133,7 +138,7 @@ class ActionSubmitDiagnosis(Action):
         payload = {"identificacion": identificacion, "respuestas": respuestas}
 
         try:
-            response = requests.post("http://localhost:3000/respuesta/add", json=payload)
+            response = requests.post(f"{BASE_URL}/respuesta/add", json=payload)
             response.raise_for_status()
             data = response.json()
 
@@ -156,6 +161,7 @@ class ActionSubmitDiagnosis(Action):
             dispatcher.utter_message(response="utter_diagnosis_failed")
             return []
 
+# Acción para finalizar la sesión
 
 class ActionEndSession(Action):
     def name(self) -> Text:
