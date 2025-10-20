@@ -1,5 +1,4 @@
 version: "3.1"
-
 nlu:
 - intent: saludar
   examples: |
@@ -27,7 +26,6 @@ nlu:
     - chau
     - adios
     - hasta luego
-    - buenas noches
     - hasta pronto
     - hasta la vista
     - nos vemos
@@ -47,80 +45,37 @@ nlu:
     - nos estamos viendo luego
     - nos estamos viendo pronto
 
-- intent: saber_como_estas
+- intent: login
   examples: |
-    - ¿como estas?
-    - ¿como te va?
-    - ¿como andas?
-    - ¿como andas vos?
-    - ¿como estas vos?
-    - ¿como te va vos?
-    - ¿como andas che?
-    - ¿como estas che?
-    - ¿como te va che?
-    - ¿que tal estas?
-    - ¿que tal andas?
-    - ¿que tal estas vos?
-    - ¿que tal andas vos?
-    - ¿que tal estas che?
-    - ¿que tal andas che?
-    - ¿que hay de nuevo?
-    - ¿que hay de nuevo che?
-    - ¿que hay de nuevo vos?
+    - iniciar sesión con usuario [juanperez](username) y contraseña [12345](password)
+    - login con usuario [maria123](username) y contraseña [password](password)
+    - usuario: [carlos.rod](username) contraseña: [clave456](password)
+    - username: [usuario_ejemplo](username), password: [pass123](password)
+    - usuario: [a.b](username) y clave [1](password)
+    - mi usuario es [doctorX](username) y mi contraseña es [secreta](password)
+    - [admin_1](username) / [clave_maestra](password)
+    - iniciar sesión con usuario: [user_1](username) y contraseña: [pass_a](password)
 
-- intent: preguntar_clima
+- intent: responder_si
   examples: |
-    - ¿como esta el clima?
-    - ¿que tiempo hace?
-    - ¿que clima hay?
-    - ¿como va el clima?
-    - ¿que tal el clima?
-    - ¿como esta el clima hoy?
-    - ¿que tiempo hace hoy?
-    - ¿que clima hay hoy?
-    - ¿como va el clima hoy?
-    - ¿que tal el clima hoy?
-    - ¿como esta el clima para hoy?
-    - ¿que tiempo hace para hoy?
-    - ¿que clima hay para hoy?
-    - ¿como va el clima para hoy?
-    - ¿que tal el clima para hoy?
-    - ¿como esta el clima che?
-    - ¿que tiempo hace che?
-    - ¿que clima hay che?
+    - sí
+    - si
+    - claro
+    - afirmativo
+    - sí, claro
+    - por supuesto
+    - sí, sí
+- intent: responder_no
+  examples: |
+    - no
+    - nope
+    - para nada
+    - negativo
+    - no, no
+    - de ninguna manera
 
-- intent: preguntar_familia
+- intent: respuesta_invalida
   examples: |
-    - ¿tienes familia?
-    - ¿tienes hermanos?
-    - ¿tienes padres?
-    - ¿tienes hijos?
-    - ¿tienes pareja?
-    - ¿tienes familia che?
-    - ¿tienes hermanos che?
-    - ¿tienes padres che?
-    - ¿tienes hijos che?
-    - ¿tienes pareja che?
-    - ¿tienes familia vos?
-    - ¿tienes hermanos vos?
-    - ¿tienes padres vos?
-    - ¿tienes hijos vos?
-    - ¿tienes pareja vos?
-
-- intent: eres_bot
-  examples: |
-    - ¿eres un bot?
-    - ¿eres un robot?
-    - ¿eres una inteligencia artificial?
-    - ¿eres una IA?
-    - ¿eres un asistente virtual?
-    - ¿eres un bot che?
-    - ¿eres un robot che?
-    - ¿eres una inteligencia artificial che?
-    - ¿eres una IA che?
-    - ¿eres un asistente virtual che?
-    - ¿eres un bot vos?
-    - ¿eres un robot vos?
-    - ¿eres una inteligencia artificial vos?
-    - ¿eres una IA vos?
-    - ¿eres un asistente virtual vos?
+    -
+    - (empty)
+    - idk

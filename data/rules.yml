@@ -1,33 +1,64 @@
 version: "3.1"
 
 rules:
-
-- rule: Saludar al usuario
+# --- 1. SALUDO E INICIO DE SESIÓN ---
+- rule: Saludar y pedir login
+  condition:
+  - active_loop: null
   steps:
   - intent: saludar
   - action: utter_saludar
+  - action: utter_ask_login
 
+# --- ¡NUEVA LÓGICA DE LOGIN! ---
+# COMBINAMOS el intent: login con el efecto del login exitoso.
+- rule: Login exitoso e inicio de diagnóstico
+  steps:
+  - intent: login
+  - action: action_process_login
+  - slot_was_set: # Verificamos que el slot se estableció (por login exitoso)
+      - rol: "Médico"
+  # Ahora, el flujo es una cadena completa y la historia no puede contradecirla.
+  - action: utter_login_success 
+  - action: diagnosis_form
+  - active_loop: diagnosis_form
+
+# --- ENVÍO DE DIAGNÓSTICO (Regla 4 se convierte en Regla 3) ---
+# rules.yml
+
+# ... (Reglas 1 y 2 anteriores)
+
+- rule: Enviar Diagnóstico tras completar formulario
+  steps:
+  - action: diagnosis_form # Paso 1: El formulario se ejecutó por última vez
+  - active_loop: null # Paso 2: El loop ya no está activo
+  - action: action_submit_diagnosis # Paso 3: Llama a la API
+  - action: utter_diagnosis_result # Paso 4: Muestra el diagnóstico
+  - action: action_end_session # Paso 5: Finaliza la sesión
+
+# --- MANEJO DE ERROR O FALLO EN DIAGNÓSTICO (Regla 5 se convierte en Regla 4) ---
+- rule: Manejar fallo en diagnóstico
+  condition:
+  - slot_was_set:
+      - answer_5
+  - slot_was_set:
+      - diagnostico_nombre: null
+  steps:
+  - action: utter_diagnosis_failed
+  - action: action_end_session
+
+# --- DESPEDIDA Y CIERRE DE SESIÓN (Regla 6 se convierte en Regla 5) ---
 - rule: Despedirse del usuario
   steps:
   - intent: despedirse
   - action: utter_despedirse
+  - action: action_end_session
 
-- rule: Responder a "¿cómo estás?"
+# --- RESPUESTAS INVÁLIDAS EN FORMULARIO (Regla 7 se convierte en Regla 6) ---
+- rule: Manejar respuestas inválidas en el formulario
+  condition:
+  - active_loop: diagnosis_form
   steps:
-  - intent: saber_como_estas
-  - action: utter_saber_como_estas
-
-- rule: Responder sobre el clima
-  steps:
-  - intent: preguntar_clima
-  - action: utter_preguntar_clima
-
-- rule: Responder sobre la familia
-  steps:
-  - intent: preguntar_familia
-  - action: utter_preguntar_familia
-
-- rule: Responder a eres un bot
-  steps:
-  - intent: eres_bot
-  - action: utter_eres_bot
+  - intent: respuesta_invalida
+  - action: utter_invalid_response
+  - action: diagnosis_form

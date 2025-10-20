@@ -1,31 +1,77 @@
 version: "3.1"
-
 stories:
 
-- story: historia de saludo
+- story: Flujo completo de inicio y diagnostico exitoso
   steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: saber_como_estas
-  - action: utter_saber_como_estas
-
-- story: historia de clima
-  steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: preguntar_clima
-  - action: utter_preguntar_clima
-
-- story: historia de familia
-  steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: preguntar_familia
-  - action: utter_preguntar_familia
-
-- story: historia de despedida
-  steps:
-  - intent: despedirse
+  - user: |
+      hola
+    intent: saludar
+  - action: utter_saludar 
+  - action: utter_ask_login 
+  - user: |
+      usuario: carlos.rod contraseña: clave456
+    intent: login
+  # Todo el flujo hasta 'active_loop: diagnosis_form' es cubierto por la nueva regla.
+  # Solo necesitamos mostrar los eventos clave de la conversación que siguen.
+  - action: action_process_login
+  - slot_was_set:
+      - rol: "Médico"
+  - action: utter_login_success
+  - action: diagnosis_form
+  - active_loop: diagnosis_form
+  
+  # Llenando el formulario (como ejemplo de predicción del modelo)
+  - user: |
+      si
+    intent: responder_si
+  - slot_was_set:
+      - answer_1: True
+  - action: diagnosis_form 
+  - user: |
+      no
+    intent: responder_no
+  - slot_was_set:
+      - answer_2: False
+  - action: diagnosis_form 
+  - user: |
+      si
+    intent: responder_si
+  - slot_was_set:
+      - answer_3: True
+  - action: diagnosis_form 
+  - user: |
+      no
+    intent: responder_no
+  - slot_was_set:
+      - answer_4: False
+  - action: diagnosis_form 
+  - user: |
+      si
+    intent: responder_si
+  - slot_was_set:
+      - answer_5: True
+  
+  # Finalización (cubierta por la Regla 4/Envío de Diagnóstico)
+  - active_loop: null
+  - action: action_submit_diagnosis
+  - action: utter_diagnosis_result
+  - user: |
+      Adios
+    intent: despedirse
   - action: utter_despedirse
-  - intent: eres_bot
-  - action: utter_eres_bot
+  - action: action_end_session
+
+- story: Manejo de respuesta inválida en formulario
+  steps:
+  - action: diagnosis_form
+  - active_loop: diagnosis_form
+  - slot_was_set:
+      - requested_slot: answer_1
+  - user: |
+      tal vez
+    intent: respuesta_invalida
+  - action: utter_invalid_response # Cubierto por Regla 6
+  - action: diagnosis_form
+  - user: |
+      si
+    intent: responder_si
