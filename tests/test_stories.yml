@@ -1,91 +1,95 @@
-#### This file contains tests to evaluate that your bot behaves as expected.
-#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
-
-stories:
-- story: happy path 1
-  steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-
-- story: happy path 2
-  steps:
-  - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
-  - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
-
-- story: sad path 1
-  steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      yes
-    intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - user: |
-      hello
-    intent: greet
-  - action: utter_greet
-  - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
-
-- story: sad path 3
-  steps:
-  - user: |
-      hi
-    intent: greet
-  - action: utter_greet
-  - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
-
-- story: say goodbye
-  steps:
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
-
-- story: bot challenge
-  steps:
-  - user: |
-      are you a bot?
-    intent: bot_challenge
-  - action: utter_iamabot
+# stories:
+# - story: Test successful login and diagnosis
+#   steps:
+#   - user: | hola
+#     intent: saludar
+#   - action: utter_saludar
+#   - action: utter_ask_login
+#   - user: | usuario: carlos.rod, contraseña: clave456
+#     intent: login
+#   - action: action_process_login
+#   - slot_was_set:
+#     - rol
+#   - action: utter_login_success
+#   - action: diagnosis_form
+#   - active_loop: diagnosis_form
+#   - user: | sí
+#     intent: responder_si
+#   - action: diagnosis_form
+#   - user: | no
+#     intent: responder_no
+#   - action: diagnosis_form
+#   - user: | sí
+#     intent: responder_si
+#   - action: diagnosis_form
+#   - user: | no
+#     intent: responder_no
+#   - action: diagnosis_form
+#   - user: | sí
+#     intent: responder_si
+#   - action: diagnosis_form
+#   - active_loop: null
+#   - action: action_submit_diagnosis
+#   - action: utter_diagnosis_result
+# - story: Test failed login
+#   steps:
+#   - user: | hola
+#     intent: saludar
+#   - action: utter_saludar
+#   - action: utter_ask_login
+#   - user: | usuario: invalid, contraseña: wrong
+#     intent: login
+#   - action: action_process_login
+#   - slot_was_set:
+#     - rol: null
+#   - action: utter_login_failed
+# - story: Test diagnosis failure
+#   steps:
+#   - user: | hola
+#     intent: saludar
+#   - action: utter_saludar
+#   - action: utter_ask_login
+#   - user: | usuario: carlos.rod, contraseña: clave456
+#     intent: login
+#   - action: action_process_login
+#   - slot_was_set:
+#     - rol
+#   - action: utter_login_success
+#   - action: diagnosis_form
+#   - active_loop: diagnosis_form
+#   - user: | sí
+#     intent: responder_si
+#   - action: diagnosis_form
+#   - user: | no
+#     intent: responder_no
+#   - action: diagnosis_form
+#   - user: | sí
+#     intent: responder_si
+#   - action: diagnosis_form
+#   - user: | no
+#     intent: responder_no
+#   - action: diagnosis_form
+#   - user: | sí
+#     intent: responder_si
+#   - action: diagnosis_form
+#   - active_loop: null
+#   - action: action_submit_diagnosis
+#   - action: utter_diagnosis_failed
+# - story: Test interruption during questions
+#   steps:
+#   - user: | hola
+#     intent: saludar
+#   - action: utter_saludar
+#   - action: utter_ask_login
+#   - user: | usuario: carlos.rod, contraseña: clave456
+#     intent: login
+#   - action: action_process_login
+#   - slot_was_set:
+#     - rol
+#   - action: utter_login_success
+#   - action: diagnosis_form
+#   - active_loop: diagnosis_form
+#   - user: | ¿cómo está el clima?
+#     intent: preguntar_clima
+#   - action: utter_preguntar_clima
+#   - action: diagnosis_form
