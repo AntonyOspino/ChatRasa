@@ -40,3 +40,11 @@
 #  username: username
 #  password: password
 #  queue: queue
+
+# Archivo: endpoints.yml
+
+# Configuración del servidor de acciones personalizadas
+action_endpoint:
+  url: "http://localhost:5055/webhook"
+# (Opcional) Si luego usas trackers o base de datos de conversaciones,
+# puedes agregar aquí otras configuraciones, pero por ahora no son necesarias.

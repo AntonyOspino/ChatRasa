@@ -1,32 +1,124 @@
 version: "3.1"
 
 intents:
-  - saludar
-  - despedirse
-  - saber_como_estas
-  - preguntar_clima
-  - preguntar_familia
+  - saludo
+  - despedida
+  - que_es_sistema_cardiovascular
+  - partes_del_sistema
+  - enfermedades_comunes
+  - sintomas_problemas
+  - prevencion
+  - alimentacion_saludable
+  - ejercicio_recomendado
+  - factores_riesgo
   - eres_bot
+  - estado_animo
+  - agradecimiento
+  - consejos
+  - negacion
+  - informar_sintoma
+  # - recomendacion_medica
+  - agendar_cita
+  - agendar_cita_opcional
+  - aceptar_consejos
+  - describir_dolor
+  - preguntar_fecha_cita
+  - preguntar_medico_asignado
+  - confirmar_guardar
+  - negar_guardado
+  - agregar_otro_sintoma
 
+actions:
+  - action_validar_usuario_api
+  - action_guardar_estado_animo_api
+  - action_guardar_sintomas_api
+  - action_obtener_citas_api
+  - action_agendar_cita_api
+  - action_cancelar_cita_api
+  - action_obtener_diagnostico_api
+  - action_guardar_diagnostico_api
+  - action_obtener_medico_api
+  - action_enviar_notificacion_api
+  - action_recomendar_segun_sintomas
+
+entities:
+  - sintoma
+
+slots:
+  sintoma:
+    type: list
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: sintoma
 
 responses:
-  utter_saludar:
-  - text: "Hola! ¿En qué puedo ayudarte?"
+  utter_saludo:
+    - text: "¡Hola! Soy tu asistente virtual especializado en salud cardiovascular ❤️. ¿Tienes algún síntoma o malestar que quieras contarme hoy?"
 
-  utter_despedirse:
-  - text: "¡Hasta luego! Que tengas un buen día."
+  utter_estado_animo:
+    - text: "Lamento escuchar eso 😟. ¿Podrías contarme un poco más sobre lo que sientes?"
 
-  utter_saber_como_estas:
-  - text: "Estoy bien, gracias por preguntar."
+  utter_dolor_pecho:
+    - text: "El dolor en el pecho puede tener varias causas. ¿Es un dolor fuerte, leve o acompañado de mareo o dificultad para respirar?"
 
-  utter_preguntar_clima:
-  - text: "Hoy hace buen clima."
+  utter_consejos:
+    - text: "Aquí tienes algunos consejos para cuidar tu corazón ❤️:\n1️⃣ Mantén una alimentación equilibrada.\n2️⃣ Realiza actividad física regularmente.\n3️⃣ Evita el estrés y descansa bien.\n4️⃣ Controla tu presión arterial y tus niveles de colesterol."
 
-  utter_preguntar_familia:
-  - text: "No tengo información sobre mi familia."
+  utter_agradecimiento:
+    - text: "¡De nada! 😊 Me alegra haberte ayudado. ¿Quieres que te dé más recomendaciones?"
+
+  utter_que_es_sistema_cardiovascular:
+    - text: "El sistema cardiovascular está formado por el corazón y los vasos sanguíneos. Su función es transportar sangre, oxígeno y nutrientes a todo el cuerpo."
+
+  utter_partes_del_sistema:
+    - text: "Está compuesto por el corazón, las arterias, las venas y los capilares."
+
+  utter_enfermedades_comunes:
+    - text: "Algunas enfermedades comunes son la hipertensión, el infarto de miocardio, la insuficiencia cardíaca y la arteriosclerosis."
+
+  utter_sintomas_problemas:
+    - text: "Los síntomas más frecuentes incluyen dolor en el pecho, dificultad para respirar, fatiga, palpitaciones y mareos."
+
+  utter_prevencion:
+    - text: "Para prevenir enfermedades cardiovasculares, mantén una dieta equilibrada, haz ejercicio, evita fumar y controla tu presión arterial."
+
+  utter_alimentacion_saludable:
+    - text: "Consume frutas, verduras, granos integrales, pescado y evita las grasas saturadas y el exceso de sal."
+
+  utter_ejercicio_recomendado:
+    - text: "Se recomienda realizar al menos 30 minutos de actividad física moderada al día, como caminar, nadar o montar bicicleta."
+
+  utter_factores_riesgo:
+    - text: "Los principales factores de riesgo son el tabaquismo, la obesidad, la diabetes, el estrés, la presión alta y el sedentarismo."
 
   utter_eres_bot:
-  - text: "Sí, soy un bot. ¿En qué puedo ayudarte?"
+    - text: "Sí, soy un bot 🤖. Estoy aquí para ayudarte con temas de salud cardiovascular."
+
+  # utter_informar_sintoma:
+  #   - text: "Lamento escuchar eso 😟. Tus síntomas pueden ser importantes. ¿Has sentido esto antes o es la primera vez?"
+
+  utter_recomendacion_medica:
+    - text: "Te recomiendo que tomes un descanso y, si el dolor continúa, acudas a un centro médico. ¿Quieres que te dé algunos consejos de prevención?"
+
+  utter_agendar_cita_opcional:
+    - text: "¿Quieres que te agende una cita médica?"
+
+  utter_despedida:
+    - text: "Está bien, me alegra haberte ayudado. ¡Cuídate mucho y que tengas un buen día! ❤️"
+
+  utter_preguntar_otro_sintoma:
+    - text: "¿Tienes otro síntoma o deseas guardar los que ya mencionaste?"
+
+  # utter_confirmar_guardado:
+  #   - text: "Perfecto 👍. Guardando tus síntomas en tu historial médico..."
+
+  utter_guardado_exitoso:
+    - text: "✅ Tus síntomas fueron registrados correctamente en tu historial. ¿Deseas agendar una cita médica?"
+
+  utter_no_guardar:
+    - text: "No hay problema 👍. ¿Quieres agendar una cita médica?"
+    - text: "Perfecto, no guardaré los síntomas. ¿Te gustaría que programe una cita médica?"
 
 session_config:
   session_expiration_time: 60

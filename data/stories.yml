@@ -1,31 +1,114 @@
 version: "3.1"
 
 stories:
+  - story: saludo inicial
+    steps:
+      - intent: saludo
+      - action: utter_saludo
 
-- story: historia de saludo
-  steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: saber_como_estas
-  - action: utter_saber_como_estas
+  - story: usuario agradece
+    steps:
+      - intent: agradecimiento
+      - action: utter_agradecimiento
 
-- story: historia de clima
-  steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: preguntar_clima
-  - action: utter_preguntar_clima
+  - story: usuario pide consejos
+    steps:
+      - intent: consejos
+      - action: utter_consejos
 
-- story: historia de familia
-  steps:
-  - intent: saludar
-  - action: utter_saludar
-  - intent: preguntar_familia
-  - action: utter_preguntar_familia
+  - story: usuario termina conversación
+    steps:
+      - intent: negacion
+      - action: utter_despedida
 
-- story: historia de despedida
-  steps:
-  - intent: despedirse
-  - action: utter_despedirse
-  - intent: eres_bot
-  - action: utter_eres_bot
+  - story: despedida directa
+    steps:
+      - intent: despedida
+      - action: utter_despedida
+
+  - story: usuario reporta dolor en el pecho paso a paso
+    steps:
+      - intent: estado_animo
+      - action: utter_estado_animo
+      - intent: informar_sintoma
+      - action: utter_dolor_pecho
+
+  - story: usuario responde sobre intensidad del dolor
+    steps:
+      - intent: describir_dolor
+      - action: utter_recomendacion_medica
+
+  - story: usuario acepta consejos o cita
+    steps:
+      - intent: aceptar_consejos
+      - action: utter_prevencion
+      - action: utter_agendar_cita_opcional
+
+  - story: usuario acepta agendar cita
+    steps:
+      - intent: agendar_cita_opcional
+      - action: action_agendar_cita_api
+
+  - story: usuario pide agendar cita directamente
+    steps:
+      - intent: agendar_cita
+      - action: action_agendar_cita_api
+
+  - story: usuario pregunta por la fecha de su cita
+    steps:
+      - intent: preguntar_fecha_cita
+      - action: action_obtener_citas_api
+
+  - story: usuario pregunta por el médico asignado
+    steps:
+      - intent: preguntar_medico_asignado
+      - action: action_obtener_medico_api
+
+  - story: flujo principal de síntomas
+    steps:
+      - intent: saludo
+      - action: utter_saludo
+      - intent: informar_sintoma
+      - action: action_recomendar_segun_sintomas
+      - action: utter_preguntar_otro_sintoma
+      - or:
+          - intent: agregar_otro_sintoma
+          - intent: informar_sintoma
+      - action: action_recomendar_segun_sintomas
+      - action: utter_preguntar_otro_sintoma
+      - or:
+          - intent: confirmar_guardar
+      - action: action_guardar_sintomas_api
+      - action: utter_guardado_exitoso
+      - intent: despedida
+      - action: utter_despedida
+
+  - story: primer sintoma
+    steps:
+      - intent: informar_sintoma
+      - action: action_recomendar_segun_sintomas
+      - action: utter_preguntar_otro_sintoma
+
+  - story: agregar otro sintoma
+    steps:
+      - or:
+          - intent: agregar_otro_sintoma
+          - intent: informar_sintoma
+      - action: action_recomendar_segun_sintomas
+      - action: utter_preguntar_otro_sintoma
+
+  - story: guardar sintomas
+    steps:
+      - intent: confirmar_guardar
+      - action: action_guardar_sintomas_api
+      - action: utter_guardado_exitoso
+
+  - story: despedida simple
+    steps:
+      - intent: despedida
+      - action: utter_despedida
+
+  - story: negar guardado de sintomas
+    steps:
+      - intent: negar_guardado
+      - action: utter_no_guardar

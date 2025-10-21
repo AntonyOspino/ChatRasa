@@ -1,126 +1,253 @@
 version: "3.1"
 
 nlu:
-- intent: saludar
-  examples: |
-    - hola
-    - buenos dias
-    - buenas tardes
-    - buenas noches
-    - que tal
-    - que hay
-    - que pasa
-    - que hubo
-    - que onda
-    - hola che
-    - buenos dias che
-    - buenas tardes che
-    - buenas noches che
-    - que hubo che
-    - que tal che
-    - que hay che
-    - que pasa che
-    - que onda che
+  - intent: saludo
+    examples: |
+      - Hola
+      - Buenas
+      - buenos días
+      - qué tal
+      - hola asistente
+      - hola, cómo estás
 
-- intent: despedirse
-  examples: |
-    - chau
-    - adios
-    - hasta luego
-    - buenas noches
-    - hasta pronto
-    - hasta la vista
-    - nos vemos
-    - nos estamos viendo
-    - hablamos luego
-    - hablamos pronto
-    - hablamos mas tarde
-    - me voy
-    - me tengo que ir
-    - tengo que irme
-    - me tengo que ir ya
-    - tengo que irme ya
-    - me voy ya
-    - me voy ahora
-    - tengo que irme ahora
-    - me tengo que ir ahora
-    - nos estamos viendo luego
-    - nos estamos viendo pronto
+  - intent: despedida
+    examples: |
+      - chau
+      - adios
+      - hasta luego
+      - buenas noches
+      - hasta pronto
+      - hasta la vista
+      - nos vemos
+      - nos estamos viendo
+      - hablamos luego
+      - hablamos pronto
+      - hablamos mas tarde
+      - me voy
+      - me tengo que ir
+      - tengo que irme
+      - me tengo que ir ya
+      - tengo que irme ya
+      - me voy ya
+      - me voy ahora
+      - tengo que irme ahora
+      - me tengo que ir ahora
+      - nos estamos viendo luego
+      - nos estamos viendo pronto
 
-- intent: saber_como_estas
-  examples: |
-    - ¿como estas?
-    - ¿como te va?
-    - ¿como andas?
-    - ¿como andas vos?
-    - ¿como estas vos?
-    - ¿como te va vos?
-    - ¿como andas che?
-    - ¿como estas che?
-    - ¿como te va che?
-    - ¿que tal estas?
-    - ¿que tal andas?
-    - ¿que tal estas vos?
-    - ¿que tal andas vos?
-    - ¿que tal estas che?
-    - ¿que tal andas che?
-    - ¿que hay de nuevo?
-    - ¿que hay de nuevo che?
-    - ¿que hay de nuevo vos?
+  - intent: que_es_sistema_cardiovascular
+    examples: |
+      - ¿Qué es el sistema cardiovascular?
+      - ¿Me puedes explicar qué hace el sistema cardiovascular?
+      - ¿Cuál es la función del sistema cardiovascular?
 
-- intent: preguntar_clima
-  examples: |
-    - ¿como esta el clima?
-    - ¿que tiempo hace?
-    - ¿que clima hay?
-    - ¿como va el clima?
-    - ¿que tal el clima?
-    - ¿como esta el clima hoy?
-    - ¿que tiempo hace hoy?
-    - ¿que clima hay hoy?
-    - ¿como va el clima hoy?
-    - ¿que tal el clima hoy?
-    - ¿como esta el clima para hoy?
-    - ¿que tiempo hace para hoy?
-    - ¿que clima hay para hoy?
-    - ¿como va el clima para hoy?
-    - ¿que tal el clima para hoy?
-    - ¿como esta el clima che?
-    - ¿que tiempo hace che?
-    - ¿que clima hay che?
+  - intent: partes_del_sistema
+    examples: |
+      - ¿Cuáles son las partes del sistema cardiovascular?
+      - ¿Qué órganos lo componen?
+      - ¿Qué incluye el sistema cardiovascular?
 
-- intent: preguntar_familia
-  examples: |
-    - ¿tienes familia?
-    - ¿tienes hermanos?
-    - ¿tienes padres?
-    - ¿tienes hijos?
-    - ¿tienes pareja?
-    - ¿tienes familia che?
-    - ¿tienes hermanos che?
-    - ¿tienes padres che?
-    - ¿tienes hijos che?
-    - ¿tienes pareja che?
-    - ¿tienes familia vos?
-    - ¿tienes hermanos vos?
-    - ¿tienes padres vos?
-    - ¿tienes hijos vos?
-    - ¿tienes pareja vos?
+  - intent: enfermedades_comunes
+    examples: |
+      - ¿Cuáles son las enfermedades más comunes del sistema cardiovascular?
+      - ¿Qué enfermedades puede tener el corazón?
+      - Dime enfermedades del sistema cardiovascular
 
-- intent: eres_bot
-  examples: |
-    - ¿eres un bot?
-    - ¿eres un robot?
-    - ¿eres una inteligencia artificial?
-    - ¿eres una IA?
-    - ¿eres un asistente virtual?
-    - ¿eres un bot che?
-    - ¿eres un robot che?
-    - ¿eres una inteligencia artificial che?
-    - ¿eres una IA che?
-    - ¿eres un asistente virtual che?
-    - ¿eres un bot vos?
-    - ¿eres un robot vos?
-    - ¿eres una inteligencia artificial vos?
-    - ¿eres una IA vos?
-    - ¿eres un asistente virtual vos?
+  - intent: sintomas_problemas
+    examples: |
+      - ¿Cuáles son los síntomas de problemas cardíacos?
+      - ¿Cómo sé si tengo un problema en el corazón?
+      - ¿Qué señales indican una enfermedad cardiovascular?
+
+  - intent: prevencion
+    examples: |
+      - ¿Cómo puedo cuidar mi sistema cardiovascular?
+      - ¿Qué puedo hacer para prevenir enfermedades cardíacas?
+      - ¿Cómo mantengo mi corazón sano?
+      - si dame un concejo de prevencion
+      - dame un consejo de prevencion
+
+  - intent: alimentacion_saludable
+    examples: |
+      - ¿Qué alimentos son buenos para el corazón?
+      - ¿Qué debo comer para tener buena salud cardiovascular?
+      - ¿Qué dieta recomiendas para el sistema cardiovascular?
+
+  - intent: ejercicio_recomendado
+    examples: |
+      - ¿Qué ejercicios ayudan al corazón?
+      - ¿Cuánto ejercicio debo hacer?
+      - ¿Qué tipo de actividad física mejora la salud cardiovascular?
+
+  - intent: factores_riesgo
+    examples: |
+      - ¿Qué factores aumentan el riesgo de enfermedad cardiovascular?
+      - ¿Qué cosas son peligrosas para el corazón?
+      - ¿Por qué hay personas con más riesgo de infarto?
+
+  - intent: eres_bot
+    examples: |
+      - ¿eres un bot?
+      - ¿eres un robot?
+      - ¿eres una inteligencia artificial?
+      - ¿eres una IA?
+      - ¿eres un asistente virtual?
+      - ¿eres un bot che?
+      - ¿eres un robot che?
+      - ¿eres una inteligencia artificial che?
+      - ¿eres una IA che?
+      - ¿eres un asistente virtual che?
+      - ¿eres un bot vos?
+      - ¿eres un robot vos?
+      - ¿eres una inteligencia artificial vos?
+      - ¿eres una IA vos?
+      - ¿eres un asistente virtual vos?
+
+  - intent: estado_animo
+    examples: |
+      - me siento mal
+      - no me siento bien
+      - me siento cansado
+      - estoy decaido
+      - me siento sin energia
+      - sin energia
+      - me siento sin fuerza
+
+  - intent: agradecimiento
+    examples: |
+      - gracias
+      - muchas gracias
+      - te agradezco
+      - muy amable
+
+  - intent: consejos
+    examples: |
+      - dame algunos consejos
+      - qué puedo hacer para cuidar mi corazón
+      - cómo puedo mejorar mi salud
+      - quiero algunos tips
+      - recomendaciones por favor
+
+  - intent: negacion
+    examples: |
+      - no
+      - no, gracias
+      - eso es todo
+      - no quiero
+
+  - intent: informar_sintoma
+    examples: |
+      - me duele el pecho
+      - estoy mareado
+      - me siento con palpitaciones
+      - me siento con dificultad para respirar
+      - tengo dolor en el brazo izquierdo
+      - tengo dolor en el brazo derecho
+      - es la primera vez
+      - tengo dolor de cabeza
+      - me siento con fatiga
+      - tengo dolor en el pecho
+      - me siento mareado
+      - tengo palpitaciones
+      - me falta el aire
+      - siento presión en el pecho
+      - tengo el corazón acelerado
+      - me duele el brazo izquierdo
+      - tengo náuseas
+      - me siento débil
+      - tengo los pies hinchados
+      - me siento fatigado
+      - tengo dificultad para respirar
+      - me duele el cuello
+      - me siento ansioso y con el corazón rápido
+      - me da dolor cuando subo escaleras
+      - tengo presión alta
+      - tengo presión baja
+      - me siento agitado
+      - me duele la cabeza con el esfuerzo
+      - tengo el corazón palpitando fuerte
+      - me despierto con el corazón acelerado
+      - tengo dolor en el pecho al hacer esfuerzo
+      - tengo sensación de opresión en el pecho
+      - me desmayo a veces
+      - siento punzadas en el corazón
+      - me falta el aire cuando camino
+      - siento hormigueo en el brazo izquierdo
+      - tengo los labios morados
+      - me levanto con los pies hinchados
+      - me duele cuando respiro profundo
+
+  - intent: describir_dolor
+    examples: |
+      - dolor fuerte
+      - dolor leve
+      - dolor acomodado
+      - dolor constante
+      - dolor intenso
+      - dolor constante
+
+  - intent: aceptar_consejos
+    examples: |
+      - acepto
+      - acepto, gracias
+      - si, dame consejos
+      - si, Dime
+
+  - intent: agendar_cita
+    examples: |
+      - quiero agendar una cita
+      - quiero agendar una cita medica
+      - dame una cita medica
+      - dame una cita
+      - agendar cita
+      - agendar cita medica
+
+  - intent: agendar_cita_opcional
+    examples: |
+      - sí
+      - si por favor
+      - claro
+      - de acuerdo
+      - vale
+      - por favor
+      - ok
+      - quiero
+
+  - intent: preguntar_fecha_cita
+    examples: |
+      - para cuándo tengo la cita
+      - cuándo es mi cita
+      - qué día tengo la cita
+      - cuándo tengo la cita médica
+
+  - intent: preguntar_medico_asignado
+    examples: |
+      - quién es mi médico asignado
+      - cuál es mi médico
+      - quién me atenderá
+      - quién es el doctor de mi cita
+
+  - intent: confirmar_guardar
+    examples: |
+      - sí, guárdalo
+      - guarda los síntomas
+      - quiero guardarlos
+      - listo, guarda todo
+      - sí, registra eso
+
+  - intent: agregar_otro_sintoma
+    examples: |
+      - tengo otro síntoma
+      - también me duele el brazo
+      - y además tengo mareo
+      - otro síntoma
+      - quiero agregar otro
+      - también siento otra cosa
+
+  - intent: negar_guardado
+    examples: |
+      - no, todavía no
+      - espera, quiero agregar más
+      - no lo guardes aún
+      - no todavía
+      - no, quiero agregar más

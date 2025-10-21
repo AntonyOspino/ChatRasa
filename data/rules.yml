@@ -1,33 +1,72 @@
 version: "3.1"
 
 rules:
+  - rule: Responder saludo
+    steps:
+      - intent: saludo
+      - action: utter_saludo
 
-- rule: Saludar al usuario
-  steps:
-  - intent: saludar
-  - action: utter_saludar
+  - rule: Responder despedida
+    steps:
+      - intent: despedida
+      - action: utter_despedida
 
-- rule: Despedirse del usuario
-  steps:
-  - intent: despedirse
-  - action: utter_despedirse
+  - rule: Responder que es el sistema cardiovascular
+    steps:
+      - intent: que_es_sistema_cardiovascular
+      - action: utter_que_es_sistema_cardiovascular
 
-- rule: Responder a "¿cómo estás?"
-  steps:
-  - intent: saber_como_estas
-  - action: utter_saber_como_estas
+  - rule: Responder partes del sistema
+    steps:
+      - intent: partes_del_sistema
+      - action: utter_partes_del_sistema
 
-- rule: Responder sobre el clima
-  steps:
-  - intent: preguntar_clima
-  - action: utter_preguntar_clima
+  - rule: Responder enfermedades comunes
+    steps:
+      - intent: enfermedades_comunes
+      - action: utter_enfermedades_comunes
 
-- rule: Responder sobre la familia
-  steps:
-  - intent: preguntar_familia
-  - action: utter_preguntar_familia
+  - rule: Responder síntomas de problemas
+    steps:
+      - intent: sintomas_problemas
+      - action: utter_sintomas_problemas
 
-- rule: Responder a eres un bot
-  steps:
-  - intent: eres_bot
-  - action: utter_eres_bot
+  - rule: Responder prevención
+    steps:
+      - intent: prevencion
+      - action: utter_prevencion
+
+  - rule: Responder alimentación saludable
+    steps:
+      - intent: alimentacion_saludable
+      - action: utter_alimentacion_saludable
+
+  - rule: Responder ejercicio recomendado
+    steps:
+      - intent: ejercicio_recomendado
+      - action: utter_ejercicio_recomendado
+
+  - rule: Responder factores de riesgo
+    steps:
+      - intent: factores_riesgo
+      - action: utter_factores_riesgo
+
+  - rule: Responder a eres un bot
+    steps:
+      - intent: eres_bot
+      - action: utter_eres_bot
+
+  # - rule: respuesta a agradecimiento
+  #   steps:
+  #     - intent: agradecimiento
+  #     - action: utter_agradecimiento
+
+  # - rule: respuesta a consejos
+  #   steps:
+  #     - intent: consejos
+  #     - action: utter_consejos
+
+  # - rule: respuesta a estado de ánimo
+  #   steps:
+  #     - intent: estado_animo
+  #     - action: utter_estado_animo
