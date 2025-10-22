@@ -60,7 +60,7 @@ class ActionConsultarCita(Action):
                 SELECT fecha_cita, hora_cita 
                 FROM cita 
                 WHERE usuario_paciente_id = %s 
-                AND estado_cita = 'activo'
+                AND estado = 'Aprobada'
                 ORDER BY fecha_cita ASC;
             """, (usuario_id,))
 
@@ -72,7 +72,7 @@ class ActionConsultarCita(Action):
                     fecha, hora = cita
                     mensajes.append(f"📅 {fecha} a las {hora}")
                 if len(citas) == 1:
-                    mensaje_final = f"Tienes una cita activa el {citas[0][0]} a las {citas[0][1]} 🩺"
+                    mensaje_final = f"Tienes una cita activa el {citas[0][0]} a las {citas[0][1]}"
                 else:
                     mensaje_final = "Estas son tus citas activas:\n" + "\n".join(mensajes)
                 dispatcher.utter_message(text=mensaje_final)
@@ -103,14 +103,77 @@ class ActionConsultarCita(Action):
 
 
 # Medicos y notificaciones
-# class ActionObtenerMedicoAPI(Action):
-#     def name(self) -> Text:
-#         return "action_obtener_medico_api"
+class ActionConsultarDoctor(Action):
+    def name(self):
+        return "action_consultar_doctor"
 
-#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-#         dispatcher.utter_message(text="Buscando Tu Médico... (simulación API)")
-#         dispatcher.utter_message(text="Tu Médico Asignado Es: Dr. María López")
-#         return []
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: dict):
+
+        identificacion = tracker.get_slot("identificacion")
+
+        # Si no hay identificación, pedimos al usuario
+        if not identificacion:
+            dispatcher.utter_message(text="Por favor, indícame tu número de identificación para consultar el doctor asignado.")
+            return []
+
+        try:
+            # Conexión a PostgreSQL (ajusta tus credenciales si es necesario)
+            conn = get_connection()
+            cursor = conn.cursor()
+
+            # 1️⃣ Buscar el ID del usuario (paciente)
+            cursor.execute("""
+                SELECT id FROM usuario WHERE identificacion = %s;
+            """, (identificacion,))
+            usuario = cursor.fetchone()
+
+            if not usuario:
+                dispatcher.utter_message(text="No encontré ningún paciente con esa identificación.")
+                return []
+
+            usuario_id = usuario[0]
+
+            # 2️⃣ Buscar la cita más reciente aprobada del paciente
+            cursor.execute("""
+                SELECT usuario_medico_id 
+                FROM cita 
+                WHERE usuario_paciente_id = %s AND estado = 'Aprobada'
+                ORDER BY fecha_cita DESC, hora_cita DESC
+                LIMIT 1;
+            """, (usuario_id,))
+            cita = cursor.fetchone()
+
+            if not cita:
+                dispatcher.utter_message(text="No tienes ninguna cita aprobada actualmente.")
+                return []
+
+            usuario_medico_id = cita[0]
+
+            # 3️⃣ Obtener los datos del médico
+            cursor.execute("""
+                SELECT nombre, apellido 
+                FROM usuario 
+                WHERE id = %s;
+            """, (usuario_medico_id,))
+            doctor = cursor.fetchone()
+
+            if doctor:
+                nombre_doctor = f"{doctor[0]} {doctor[1]}"
+                dispatcher.utter_message(text=f"Tu médico asignado es el Dr./Dra. {nombre_doctor} 👨‍⚕️")
+            else:
+                dispatcher.utter_message(text="No encontré los datos del médico asignado a tu cita.")
+
+        except Exception as e:
+            print("Error al consultar el doctor:", e)
+            dispatcher.utter_message(text="Hubo un problema al consultar la información del médico.")
+        finally:
+            if 'connection' in locals() and connection:
+                cursor.close()
+                connection.close()
+
+        return []
 
 
 # Sistomas

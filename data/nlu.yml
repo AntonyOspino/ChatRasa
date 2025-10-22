@@ -261,7 +261,7 @@ nlu:
       - mi número de identificación es [1034567890](identificacion)
       - [9876543210](identificacion)
       - mi cédula es [1234567890](identificacion)
-      - consultar cita con cédula [1034567890](cedula)
+      - consultar cita con cédula [1034567890](identificacion)
 
   - intent: preguntar_fecha_cita
     examples: |
@@ -304,3 +304,10 @@ nlu:
       - [1234567890](identificacion)
       - mi cedula es [1234567890](identificacion)
       - consultar cita con cédula [1234567890](identificacion)
+      - 1234567890
+      - 0987654321
+      - 1020304050
+      - mi cédula es 4567891230
+      - número de identificación: 3216549870
+      - número de identificación: 1234567890
+      - mi identificacion es 1234567890

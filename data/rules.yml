@@ -174,3 +174,10 @@ rules:
     steps:
       - intent: ayuda
       - action: utter_ayuda
+
+  - rule: Ejecutar acción tras dar identificación
+    steps:
+      - intent: dar_identificacion
+      - slot_was_set:
+          - identificacion
+      - action: action_consultar_cita
