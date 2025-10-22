@@ -135,6 +135,8 @@ stories:
   - story: flujo de consulta cita
     steps:
       - intent: consultar_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
       - action: action_consultar_cita
 
   - story: flujo de consulta doctor

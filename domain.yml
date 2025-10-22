@@ -34,6 +34,7 @@ intents:
   - nauseas
   - recomendacion_general
   - consultar_cita
+  - dar_identificacion
   - consultar_resultados
   - consultar_doctor
   - negacion
@@ -49,15 +50,15 @@ actions:
   - action_consultar_resultados
 
 entities:
-  - sintoma
+  - identificacion
 
 slots:
-  sintoma:
-    type: list
-    influence_conversation: true
+  identificacion:
+    type: text
+    influence_conversation: false
     mappings:
       - type: from_entity
-        entity: sintoma
+        entity: identificacion
 
 responses:
   utter_saludo:
@@ -167,6 +168,9 @@ responses:
     - text: "¿Hay algo más que te esté molestando? 🤔"
     - text: "¿Puedo ayudarte con otro malestar? 💬"
     - text: "¿Quieres contarme si tienes otro síntoma? 😊"
+
+  utter_pedir_identificacion:
+    - text: "Por favor, indícame tu número de identificación para consultar tus citas."
 
 session_config:
   session_expiration_time: 60

@@ -249,6 +249,19 @@ nlu:
       - cuando es mi cita
       - tengo cita programada
       - dime mi proxima cita
+      - quiero saber mi proxima cita
+      - quiero saber mi cita
+      - quiero saber mi cita medica
+      - cuando es mi cita medica
+      - tengo cita?
+      - tengo alguna cita medica?
+      - quiero consultar mi cita
+      - tengo una cita pendiente?
+      - dime si tengo cita
+      - mi número de identificación es [1034567890](identificacion)
+      - [9876543210](identificacion)
+      - mi cédula es [1234567890](identificacion)
+      - consultar cita con cédula [1034567890](cedula)
 
   - intent: preguntar_fecha_cita
     examples: |
@@ -284,3 +297,10 @@ nlu:
       - otro síntoma
       - quiero agregar otro
       - también siento otra cosa
+
+  - intent: dar_identificacion
+    examples: |
+      - mi identificacion es [1234567890](identificacion)
+      - [1234567890](identificacion)
+      - mi cedula es [1234567890](identificacion)
+      - consultar cita con cédula [1234567890](identificacion)
