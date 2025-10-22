@@ -11,6 +11,125 @@ rules:
       - intent: despedida
       - action: utter_despedida
 
+  - rule: responder al agradecimiento
+    steps:
+      - intent: agradecimiento
+      - action: utter_agradecimiento
+
+  - rule: responder bot
+    steps:
+      - intent: eres_bot
+      - action: utter_eres_bot
+
+  # Reglas por síntomas
+  - rule: responder dolor pecho
+    steps:
+      - intent: dolor_pecho
+      - action: utter_dolor_pecho
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder palpitaciones
+    steps:
+      - intent: palpitaciones
+      - action: utter_palpitaciones
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder mareo
+    steps:
+      - intent: mareo
+      - action: utter_mareo
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder falta de aire
+    steps:
+      - intent: falta_aire
+      - action: utter_falta_aire
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder fatiga
+    steps:
+      - intent: fatiga
+      - action: utter_fatiga
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder dolor brazo izquierdo
+    steps:
+      - intent: dolor_brazo_izquierdo
+      - action: utter_dolor_brazo_izquierdo
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder dolor cuello
+    steps:
+      - intent: dolor_cuello
+      - action: utter_dolor_cuello
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder dolor cabeza
+    steps:
+      - intent: dolor_cabeza
+      - action: utter_dolor_cabeza
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder pies hinchados
+    steps:
+      - intent: pies_hinchados
+      - action: utter_pies_hinchados
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder labios morados
+    steps:
+      - intent: labios_morados
+      - action: utter_labios_morados
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder desmayo
+    steps:
+      - intent: desmayo
+      - action: utter_desmayo
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder ansiedad cardiaca
+    steps:
+      - intent: ansiedad_cardiaca
+      - action: utter_ansiedad_cardiaca
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder presion alta
+    steps:
+      - intent: presion_alta
+      - action: utter_presion_alta
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder presion baja
+    steps:
+      - intent: presion_baja
+      - action: utter_presion_baja
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder dolor esfuerzo
+    steps:
+      - intent: dolor_esfuerzo
+      - action: utter_dolor_esfuerzo
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder hormigueo
+    steps:
+      - intent: hormigueo
+      - action: utter_hormigueo
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder nauseas
+    steps:
+      - intent: nauseas
+      - action: utter_nauseas
+      - action: utter_ofrecer_ayuda
+
+  - rule: responder recomendaciones
+    steps:
+      - intent: recomendacion_general
+      - action: utter_recomendacion_general
+      - action: utter_ofrecer_ayuda
+
   - rule: Responder que es el sistema cardiovascular
     steps:
       - intent: que_es_sistema_cardiovascular
@@ -51,22 +170,7 @@ rules:
       - intent: factores_riesgo
       - action: utter_factores_riesgo
 
-  - rule: Responder a eres un bot
+  - rule: dar ayuda general
     steps:
-      - intent: eres_bot
-      - action: utter_eres_bot
-
-  # - rule: respuesta a agradecimiento
-  #   steps:
-  #     - intent: agradecimiento
-  #     - action: utter_agradecimiento
-
-  # - rule: respuesta a consejos
-  #   steps:
-  #     - intent: consejos
-  #     - action: utter_consejos
-
-  # - rule: respuesta a estado de ánimo
-  #   steps:
-  #     - intent: estado_animo
-  #     - action: utter_estado_animo
+      - intent: ayuda
+      - action: utter_ayuda

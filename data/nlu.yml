@@ -9,31 +9,23 @@ nlu:
       - qué tal
       - hola asistente
       - hola, cómo estás
+      - buenas tardes
+      - buenas noches
 
   - intent: despedida
     examples: |
       - chau
       - adios
       - hasta luego
-      - buenas noches
       - hasta pronto
       - hasta la vista
       - nos vemos
       - nos estamos viendo
       - hablamos luego
-      - hablamos pronto
-      - hablamos mas tarde
+      - chao
+      - cuidate
+      - me despido
       - me voy
-      - me tengo que ir
-      - tengo que irme
-      - me tengo que ir ya
-      - tengo que irme ya
-      - me voy ya
-      - me voy ahora
-      - tengo que irme ahora
-      - me tengo que ir ahora
-      - nos estamos viendo luego
-      - nos estamos viendo pronto
 
   - intent: que_es_sistema_cardiovascular
     examples: |
@@ -92,16 +84,6 @@ nlu:
       - ¿eres una inteligencia artificial?
       - ¿eres una IA?
       - ¿eres un asistente virtual?
-      - ¿eres un bot che?
-      - ¿eres un robot che?
-      - ¿eres una inteligencia artificial che?
-      - ¿eres una IA che?
-      - ¿eres un asistente virtual che?
-      - ¿eres un bot vos?
-      - ¿eres un robot vos?
-      - ¿eres una inteligencia artificial vos?
-      - ¿eres una IA vos?
-      - ¿eres un asistente virtual vos?
 
   - intent: estado_animo
     examples: |
@@ -120,14 +102,6 @@ nlu:
       - te agradezco
       - muy amable
 
-  - intent: consejos
-    examples: |
-      - dame algunos consejos
-      - qué puedo hacer para cuidar mi corazón
-      - cómo puedo mejorar mi salud
-      - quiero algunos tips
-      - recomendaciones por favor
-
   - intent: negacion
     examples: |
       - no
@@ -135,47 +109,121 @@ nlu:
       - eso es todo
       - no quiero
 
-  - intent: informar_sintoma
+  - intent: dolor_cabeza
     examples: |
-      - me duele el pecho
-      - estoy mareado
-      - me siento con palpitaciones
-      - me siento con dificultad para respirar
-      - tengo dolor en el brazo izquierdo
-      - tengo dolor en el brazo derecho
-      - es la primera vez
       - tengo dolor de cabeza
-      - me siento con fatiga
-      - tengo dolor en el pecho
-      - me siento mareado
-      - tengo palpitaciones
-      - me falta el aire
-      - siento presión en el pecho
-      - tengo el corazón acelerado
-      - me duele el brazo izquierdo
-      - tengo náuseas
-      - me siento débil
-      - tengo los pies hinchados
-      - me siento fatigado
-      - tengo dificultad para respirar
-      - me duele el cuello
-      - me siento ansioso y con el corazón rápido
-      - me da dolor cuando subo escaleras
-      - tengo presión alta
-      - tengo presión baja
-      - me siento agitado
-      - me duele la cabeza con el esfuerzo
-      - tengo el corazón palpitando fuerte
-      - me despierto con el corazón acelerado
-      - tengo dolor en el pecho al hacer esfuerzo
-      - tengo sensación de opresión en el pecho
-      - me desmayo a veces
-      - siento punzadas en el corazón
-      - me falta el aire cuando camino
-      - siento hormigueo en el brazo izquierdo
-      - tengo los labios morados
-      - me levanto con los pies hinchados
-      - me duele cuando respiro profundo
+      - me duele la cabeza
+      - siento presión en la cabeza
+
+  - intent: dolor_pecho
+    examples: |
+      - Me duele el pecho
+      - Tengo dolor en el pecho
+      - Siento presión en el pecho
+      - Tengo una molestia en el pecho
+
+  - intent: palpitaciones
+    examples: |
+      - Siento palpitaciones
+      - Tengo el corazón acelerado
+      - Me late muy rápido el corazón
+      - Siento el corazón fuerte
+
+  - intent: mareo
+    examples: |
+      - Estoy mareado
+      - Me siento mareado
+      - Tengo mareo
+      - Me da vértigo
+      - siento que todo me da vueltas
+
+  - intent: falta_aire
+    examples: |
+      - Me falta el aire
+      - Me cuesta respirar
+      - Tengo dificultad para respirar
+      - Me ahogo al caminar
+
+  - intent: fatiga
+    examples: |
+      - Me siento cansado
+      - Estoy fatigado
+      - Me siento sin energía
+      - Me agoto fácilmente
+
+  - intent: dolor_brazo_izquierdo
+    examples: |
+      - Me duele el brazo izquierdo
+      - Tengo molestia en el brazo izquierdo
+      - Siento hormigueo en el brazo izquierdo
+
+  - intent: dolor_cuello
+    examples: |
+      - Me duele el cuello
+      - Tengo presión en el cuello
+      - Siento rigidez en el cuello
+
+  - intent: pies_hinchados
+    examples: |
+      - Tengo los pies hinchados
+      - Me despierto con los pies hinchados
+      - Se me hinchan los pies
+
+  - intent: labios_morados
+    examples: |
+      - Tengo los labios morados
+      - Mis labios están morados
+      - Se me ponen los labios azules
+
+  - intent: desmayo
+    examples: |
+      - Me desmaye
+      - senti que me desmayaba
+      - Me sentí a punto de desmayarme
+      - Casi me desmayo
+
+  - intent: ansiedad_cardiaca
+    examples: |
+      - Me siento ansioso y el corazón me late rápido
+      - Me pongo nervioso y el corazón se acelera
+      - Siento ansiedad y palpitaciones
+
+  - intent: presion_alta
+    examples: |
+      - Tengo la presión alta
+      - Me subió la presión
+      - Tengo hipertensión
+
+  - intent: presion_baja
+    examples: |
+      - Tengo la presión baja
+      - Me siento débil por la presión
+      - Tengo hipotensión
+
+  - intent: dolor_esfuerzo
+    examples: |
+      - Me duele el pecho al hacer esfuerzo
+      - Siento dolor al subir escaleras
+      - Me da dolor cuando camino rápido
+
+  - intent: hormigueo
+    examples: |
+      - Siento hormigueo
+      - Tengo hormigueo en el cuerpo
+      - Me hormiguea el brazo o la mano
+
+  - intent: nauseas
+    examples: |
+      - Tengo náuseas
+      - Siento ganas de vomitar
+      - Me siento con el estómago revuelto
+
+  - intent: recomendacion_general
+    examples: |
+      - Qué puedo hacer para cuidar mi corazón
+      - Dame algunos consejos
+      - Recomendaciones para estar sano
+      - Cómo cuido mi corazón
 
   - intent: describir_dolor
     examples: |
@@ -186,32 +234,21 @@ nlu:
       - dolor intenso
       - dolor constante
 
-  - intent: aceptar_consejos
+  - intent: ayuda
     examples: |
-      - acepto
-      - acepto, gracias
-      - si, dame consejos
-      - si, Dime
+      - qué puedes hacer
+      - cómo me puedes ayudar
+      - en qué me ayudas
+      - necesito ayuda
 
-  - intent: agendar_cita
+  - intent: consultar_cita
     examples: |
-      - quiero agendar una cita
-      - quiero agendar una cita medica
-      - dame una cita medica
-      - dame una cita
-      - agendar cita
-      - agendar cita medica
-
-  - intent: agendar_cita_opcional
-    examples: |
-      - sí
-      - si por favor
-      - claro
-      - de acuerdo
-      - vale
-      - por favor
-      - ok
-      - quiero
+      - consultar cita
+      - consultar cita medica
+      - tengo alguna cita medica
+      - cuando es mi cita
+      - tengo cita programada
+      - dime mi proxima cita
 
   - intent: preguntar_fecha_cita
     examples: |
@@ -227,13 +264,17 @@ nlu:
       - quién me atenderá
       - quién es el doctor de mi cita
 
-  - intent: confirmar_guardar
+  - intent: consultar_doctor
     examples: |
-      - sí, guárdalo
-      - guarda los síntomas
-      - quiero guardarlos
-      - listo, guarda todo
-      - sí, registra eso
+      - quién es mi doctor
+      - qué doctor me atiende
+      - dime el nombre del médico
+
+  - intent: consultar_resultados
+    examples: |
+      - ya están mis resultados
+      - puedo ver mis resultados médicos
+      - quiero saber mis exámenes
 
   - intent: agregar_otro_sintoma
     examples: |
@@ -243,11 +284,3 @@ nlu:
       - otro síntoma
       - quiero agregar otro
       - también siento otra cosa
-
-  - intent: negar_guardado
-    examples: |
-      - no, todavía no
-      - espera, quiero agregar más
-      - no lo guardes aún
-      - no todavía
-      - no, quiero agregar más

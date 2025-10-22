@@ -1,6 +1,7 @@
 recipe: default.v1
 
 language: es
+
 pipeline:
   - name: WhitespaceTokenizer
   - name: RegexFeaturizer
@@ -13,6 +14,6 @@ pipeline:
 policies:
   - name: RulePolicy
   - name: MemoizationPolicy
-  - name: UnexpecTEDIntentPolicy
   - name: TEDPolicy
+
 assistant_id: 20251008-191204-angry-cathode

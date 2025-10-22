@@ -14,32 +14,39 @@ intents:
   - eres_bot
   - estado_animo
   - agradecimiento
-  - consejos
+  - ayuda
+  - dolor_pecho
+  - palpitaciones
+  - mareo
+  - falta_aire
+  - fatiga
+  - dolor_brazo_izquierdo
+  - dolor_cuello
+  - dolor_cabeza
+  - pies_hinchados
+  - labios_morados
+  - desmayo
+  - ansiedad_cardiaca
+  - presion_alta
+  - presion_baja
+  - dolor_esfuerzo
+  - hormigueo
+  - nauseas
+  - recomendacion_general
+  - consultar_cita
+  - consultar_resultados
+  - consultar_doctor
   - negacion
-  - informar_sintoma
-  # - recomendacion_medica
-  - agendar_cita
-  - agendar_cita_opcional
-  - aceptar_consejos
+  - consejos
   - describir_dolor
   - preguntar_fecha_cita
   - preguntar_medico_asignado
-  - confirmar_guardar
-  - negar_guardado
   - agregar_otro_sintoma
 
 actions:
-  - action_validar_usuario_api
-  - action_guardar_estado_animo_api
-  - action_guardar_sintomas_api
-  - action_obtener_citas_api
-  - action_agendar_cita_api
-  - action_cancelar_cita_api
-  - action_obtener_diagnostico_api
-  - action_guardar_diagnostico_api
-  - action_obtener_medico_api
-  - action_enviar_notificacion_api
-  - action_recomendar_segun_sintomas
+  - action_consultar_cita
+  - action_consultar_doctor
+  - action_consultar_resultados
 
 entities:
   - sintoma
@@ -56,17 +63,71 @@ responses:
   utter_saludo:
     - text: "¡Hola! Soy tu asistente virtual especializado en salud cardiovascular ❤️. ¿Tienes algún síntoma o malestar que quieras contarme hoy?"
 
-  utter_estado_animo:
-    - text: "Lamento escuchar eso 😟. ¿Podrías contarme un poco más sobre lo que sientes?"
+  utter_despedida:
+    - text: "¡Cuídate mucho ❤️! Recuerda escuchar a tu cuerpo y mantener hábitos saludables."
 
   utter_dolor_pecho:
-    - text: "El dolor en el pecho puede tener varias causas. ¿Es un dolor fuerte, leve o acompañado de mareo o dificultad para respirar?"
+    - text: "El dolor en el pecho puede ser algo serio 😟. Te recomiendo descansar y acudir a un médico si el dolor es fuerte o constante."
+
+  utter_palpitaciones:
+    - text: "Las palpitaciones pueden deberse al estrés o al cansancio 😥. Respira profundo, descansa y evita el café o el alcohol."
+
+  utter_mareo:
+    - text: "El mareo puede ser por presión baja o falta de oxígeno 😶‍🌫️. Si persiste, siéntate y respira lento; si no mejora, busca atención médica."
+
+  utter_falta_aire:
+    - text: "Si te falta el aire 😮‍💨, evita esfuerzos físicos y si empeora o es repentino, acude a urgencias."
+
+  utter_fatiga:
+    - text: "La fatiga constante puede ser una señal de que tu corazón necesita descanso 💤. Duerme bien, aliméntate y consulta a tu médico si sigue igual."
+
+  utter_dolor_brazo_izquierdo:
+    - text: "El dolor en el brazo izquierdo puede estar relacionado con el corazón ❤️. Si es fuerte o viene con presión en el pecho, busca ayuda médica."
+
+  utter_dolor_cuello:
+    - text: "El dolor o tensión en el cuello puede deberse al estrés o a una mala postura 😔. Relaja tus músculos y descansa."
+
+  utter_dolor_cabeza:
+    - text: "Toma agua 💧, evita pantallas y descansa. Si el dolor es muy fuerte o con mareo, consulta a un médico."
+
+  utter_pies_hinchados:
+    - text: "Los pies hinchados pueden ser por retención de líquidos o mala circulación 🦶. Descansa con los pies en alto y evita la sal."
+
+  utter_labios_morados:
+    - text: "Los labios morados pueden indicar baja oxigenación 😨. Respira profundo y si no mejora, acude de inmediato a un centro médico."
+
+  utter_desmayo:
+    - text: "Si te has desmayado o casi, siéntate o recuéstate 😴. Puede ser por presión baja o falta de oxígeno. Si se repite, acude al médico."
+
+  utter_ansiedad_cardiaca:
+    - text: "La ansiedad puede acelerar el corazón 💓. Haz respiraciones lentas, evita cafeína y busca espacios tranquilos."
+
+  utter_presion_alta:
+    - text: "Controla el consumo de sal y evita el estrés 🧘. Si tu presión está muy alta, acude al médico."
+
+  utter_presion_baja:
+    - text: "Come algo salado y bebe agua 💧. Si te mareas o sientes débil, recuéstate con las piernas elevadas."
+
+  utter_dolor_esfuerzo:
+    - text: "Si el dolor aparece al hacer esfuerzo 💪, puede ser una señal de advertencia. Suspende la actividad y revisa tu presión arterial."
+
+  utter_hormigueo:
+    - text: "El hormigueo puede ser por mala circulación o estrés 😬. Mueve el cuerpo suavemente y descansa un rato."
+
+  utter_nauseas:
+    - text: "Las náuseas pueden estar ligadas a presión baja o ansiedad 🤢. Descansa, hidrátate y evita comidas pesadas."
+
+  utter_recomendacion_general:
+    - text: "💖 Consejos para cuidar tu corazón:\n- Mantén una dieta balanceada 🍎\n- Haz ejercicio regular 🚶‍♂️\n- Evita el tabaco 🚭 y el estrés 😌"
+
+  utter_agradecimiento:
+    - text: "¡De nada! 😊 Me alegra poder ayudarte. ¿Hay algo más que quieras saber?"
+
+  utter_eres_bot:
+    - text: "Sí, soy un asistente virtual 🤖 especializado en salud cardiovascular. Estoy aquí para ayudarte."
 
   utter_consejos:
     - text: "Aquí tienes algunos consejos para cuidar tu corazón ❤️:\n1️⃣ Mantén una alimentación equilibrada.\n2️⃣ Realiza actividad física regularmente.\n3️⃣ Evita el estrés y descansa bien.\n4️⃣ Controla tu presión arterial y tus niveles de colesterol."
-
-  utter_agradecimiento:
-    - text: "¡De nada! 😊 Me alegra haberte ayudado. ¿Quieres que te dé más recomendaciones?"
 
   utter_que_es_sistema_cardiovascular:
     - text: "El sistema cardiovascular está formado por el corazón y los vasos sanguíneos. Su función es transportar sangre, oxígeno y nutrientes a todo el cuerpo."
@@ -92,33 +153,20 @@ responses:
   utter_factores_riesgo:
     - text: "Los principales factores de riesgo son el tabaquismo, la obesidad, la diabetes, el estrés, la presión alta y el sedentarismo."
 
-  utter_eres_bot:
-    - text: "Sí, soy un bot 🤖. Estoy aquí para ayudarte con temas de salud cardiovascular."
-
-  # utter_informar_sintoma:
-  #   - text: "Lamento escuchar eso 😟. Tus síntomas pueden ser importantes. ¿Has sentido esto antes o es la primera vez?"
-
   utter_recomendacion_medica:
     - text: "Te recomiendo que tomes un descanso y, si el dolor continúa, acudas a un centro médico. ¿Quieres que te dé algunos consejos de prevención?"
-
-  utter_agendar_cita_opcional:
-    - text: "¿Quieres que te agende una cita médica?"
-
-  utter_despedida:
-    - text: "Está bien, me alegra haberte ayudado. ¡Cuídate mucho y que tengas un buen día! ❤️"
 
   utter_preguntar_otro_sintoma:
     - text: "¿Tienes otro síntoma o deseas guardar los que ya mencionaste?"
 
-  # utter_confirmar_guardado:
-  #   - text: "Perfecto 👍. Guardando tus síntomas en tu historial médico..."
+  utter_ayuda:
+    - text: "Puedo ayudarte a consultar tus citas, resultados médicos o darte recomendaciones sobre salud básica."
 
-  utter_guardado_exitoso:
-    - text: "✅ Tus síntomas fueron registrados correctamente en tu historial. ¿Deseas agendar una cita médica?"
-
-  utter_no_guardar:
-    - text: "No hay problema 👍. ¿Quieres agendar una cita médica?"
-    - text: "Perfecto, no guardaré los síntomas. ¿Te gustaría que programe una cita médica?"
+  utter_ofrecer_ayuda:
+    - text: "¿Tienes otro síntoma o algo más en lo que pueda ayudarte? 💬"
+    - text: "¿Hay algo más que te esté molestando? 🤔"
+    - text: "¿Puedo ayudarte con otro malestar? 💬"
+    - text: "¿Quieres contarme si tienes otro síntoma? 😊"
 
 session_config:
   session_expiration_time: 60
