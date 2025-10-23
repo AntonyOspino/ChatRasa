@@ -175,6 +175,17 @@ rules:
       - intent: ayuda
       - action: utter_ayuda
 
+  - rule: pedir identificacion para consultar cita
+    steps:
+      - intent: consultar_cita
+      - action: utter_pedir_identificacion
+
+  - rule: procesar consulta cita con identificacion
+    steps:
+      - intent: dar_identificacion
+      - action: action_consultar_cita
+      - action: utter_ofrecer_ayuda
+
   # - rule: pedir identificacion si falta para consultar doctor
   #   steps:
   #     - intent: consultar_doctor

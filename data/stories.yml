@@ -132,12 +132,12 @@ stories:
       - intent: ayuda
       - action: utter_ayuda
 
-  - story: flujo de consulta cita
-    steps:
-      - intent: consultar_cita
-      - action: utter_pedir_identificacion
-      - intent: dar_identificacion
-      - action: action_consultar_cita
+  # - story: flujo de consulta cita
+  #   steps:
+  #     - intent: consultar_cita
+  #     - action: utter_pedir_identificacion
+  #     - intent: dar_identificacion
+  #     - action: action_consultar_cita
 
   # - story: flujo de consulta doctor
   #   steps:
@@ -162,10 +162,22 @@ stories:
           - identificacion: "1234567890"
       - action: action_consultar_doctor
 
-  - story: flujo de resultados
+  - story: flujo basico de consultas
     steps:
-      - intent: consultar_resultados
-      - action: action_consultar_resultados
+      - intent: saludo
+      - action: utter_saludo
+      - intent: consultar_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_cita
+      - intent: consultar_doctor
+      - action: action_consultar_doctor
+      - action: utter_ofrecer_ayuda
+
+  # - story: flujo de resultados
+  #   steps:
+  #     - intent: consultar_resultados
+  #     - action: action_consultar_resultados
 
   # - story: usuario reporta dolor en el pecho paso a paso
   #   steps:

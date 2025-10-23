@@ -35,6 +35,7 @@ class ActionConsultarCita(Action):
         cursor = None
         try:
             identificacion = tracker.get_slot("identificacion")
+            print(f" DEBUG - Identificacion en slot: {identificacion}")
 
             # Si no hay identificación, intentar obtenerlo del último mensaje
             if not identificacion:
@@ -185,7 +186,7 @@ class ActionConsultarDoctor(Action):
             if conn:
                 conn.close()
 
-        return [SlotSet("identificacion", None)]
+        return []
 
 
 # Sistomas
