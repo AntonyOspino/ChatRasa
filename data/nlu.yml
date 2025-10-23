@@ -268,20 +268,6 @@ nlu:
       - [9876543210](identificacion)
       - consultar cita con cedula [1034567890](identificacion)
 
-  # - intent: preguntar_fecha_cita
-  #   examples: |
-  #     - para cuando tengo la cita
-  #     - cuando es mi cita
-  #     - que dia tengo la cita
-  #     - cuando tengo la cita medica
-
-  # - intent: preguntar_medico_asignado
-  #   examples: |
-  #     - quién es mi médico asignado
-  #     - cuál es mi médico
-  #     - quién me atenderá
-  #     - quién es el doctor de mi cita
-
   - intent: consultar_doctor
     examples: |
       - quién es mi medico asignado
@@ -294,11 +280,51 @@ nlu:
       - quien es mi doctor con cedula [1034567890](identificacion)
       - que medico me atendera, mi identificacion es [9876543210](identificacion)
 
-  - intent: consultar_resultados
+  - intent: consultar_historial
     examples: |
-      - ya están mis resultados
-      - puedo ver mis resultados médicos
-      - quiero saber mis exámenes
+      - quiero ver mi historial médico
+      - muéstrame mi historial
+      - ver mi historial
+      - historial médico
+      - mi historial clínico
+      - consultar historial
+      - ver historial completo
+      - dame mi historial
+      - cuál es mi historial
+      - historial de consultas
+      - quiero saber mi historial médico
+
+  - intent: consultar_ultimo_diagnostico
+    examples: |
+      - cuál fue mi último diagnóstico
+      - último diagnóstico
+      - mi diagnóstico más reciente
+      - qué diagnóstico tuve
+      - ver último diagnóstico
+      - consultar diagnóstico
+      - qué dijo el doctor la última vez
+      - cuál es mi diagnóstico actual
+      - mi último resultado médico
+      - diagnóstico reciente
+
+  - intent: consultar_especialidades
+    examples: |
+      - qué especialidades tienen
+      - cuáles son las especialidades disponibles
+      - ver especialidades
+      - especialidades médicas
+      - qué especialidades hay
+      - mostrar especialidades
+      - listar especialidades
+      - especialidades del hospital
+      - qué doctores tienen
+      - tipos de especialistas
+
+  # - intent: consultar_resultados
+  #   examples: |
+  #     - ya están mis resultados
+  #     - puedo ver mis resultados médicos
+  #     - quiero saber mis exámenes
 
   - intent: agregar_otro_sintoma
     examples: |

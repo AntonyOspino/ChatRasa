@@ -41,11 +41,17 @@ intents:
   - consejos
   - describir_dolor
   - agregar_otro_sintoma
+  - consultar_historial
+  - consultar_ultimo_diagnostico
+  - consultar_especialidades
 
 actions:
   - action_consultar_cita
   - action_consultar_doctor
   - action_consultar_resultados
+  - action_consultar_historial
+  - action_consultar_ultimo_diagnostico
+  - action_consultar_especialidades
 
 entities:
   - identificacion
@@ -155,9 +161,6 @@ responses:
   utter_recomendacion_medica:
     - text: "Te recomiendo que tomes un descanso y, si el dolor continúa, acudas a un centro médico. ¿Quieres que te dé algunos consejos de prevención?"
 
-  # utter_preguntar_otro_sintoma:
-  #   - text: "¿Tienes otro síntoma o deseas guardar los que ya mencionaste?"
-
   utter_ayuda:
     - text: "Puedo ayudarte a consultar tus citas, resultados médicos o darte recomendaciones sobre salud básica."
 
@@ -184,6 +187,18 @@ responses:
 
   utter_pedir_identificacion:
     - text: "Por favor, indícame tu número de identificación para la consulta."
+
+  utter_ofrecer_ayuda_historial:
+    - text: "¿Te gustaría ver tu último diagnóstico específico o consultar algo más? 📋"
+    - text: "¿Necesitas revisar algún diagnóstico en particular? 🩺"
+
+  utter_ofrecer_ayuda_diagnostico:
+    - text: "¿Quieres ver tu historial completo o necesitas otra consulta? 💬"
+    - text: "¿Deseas consultar tus citas o algo más? 📅"
+
+  utter_ofrecer_ayuda_especialidades:
+    - text: "¿Te gustaría agendar una cita en alguna especialidad o consultar algo más? 🏥"
+    - text: "¿Necesitas información sobre alguna especialidad en particular? 💬"
 
 session_config:
   session_expiration_time: 60

@@ -89,3 +89,39 @@ stories:
       - intent: consultar_cita
       - action: action_consultar_cita
       - action: utter_ofrecer_ayuda_general
+
+  # ✅ FLUJOS CLAROS PARA CONSULTAR HISTORIAL, DIAGNOSTICO Y ESPECIALIDADES
+  - story: consultar historial médico
+    steps:
+      - intent: consultar_historial
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_historial
+      - action: utter_ofrecer_ayuda_historial
+
+  - story: consultar último diagnóstico
+    steps:
+      - intent: consultar_ultimo_diagnostico
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_ultimo_diagnostico
+      - action: utter_ofrecer_ayuda_diagnostico
+
+  - story: consultar especialidades
+    steps:
+      - intent: consultar_especialidades
+      - action: action_consultar_especialidades
+      - action: utter_ofrecer_ayuda_especialidades
+
+  - story: flujo completo con historial
+    steps:
+      - intent: saludo
+      - action: utter_saludo
+      - intent: consultar_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_cita
+      - action: utter_ofrecer_ayuda_cita
+      - intent: consultar_historial
+      - action: action_consultar_historial
+      - action: utter_ofrecer_ayuda_general
