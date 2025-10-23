@@ -320,11 +320,70 @@ nlu:
       - qué doctores tienen
       - tipos de especialistas
 
-  # - intent: consultar_resultados
-  #   examples: |
-  #     - ya están mis resultados
-  #     - puedo ver mis resultados médicos
-  #     - quiero saber mis exámenes
+  - intent: consultar_datos_paciente
+    examples: |
+      - ver mis datos
+      - mis datos personales
+      - información de mi perfil
+      - consultar mis datos
+      - mi información médica
+      - ver mi perfil
+      - mis datos de paciente
+      - cuáles son mis datos
+      - muestra mi información
+      - datos del paciente
+      - mi peso y talla
+      - mi información personal
+
+  - intent: consultar_citas_anteriores
+    examples: |
+      - ver mis citas anteriores
+      - citas pasadas
+      - historial de citas
+      - mis citas atendidas
+      - citas que ya tuve
+      - consultar citas anteriores
+      - ver citas viejas
+      - mis consultas pasadas
+      - citas ya realizadas
+      - historial de consultas médicas
+
+  - intent: consultar_recomendaciones
+    examples: |
+      - ver mis recomendaciones
+      - recomendaciones médicas
+      - que me recomendaron
+      - mis ultimas recomendaciones
+      - consultar recomendaciones
+      - que debo hacer segun el doctor
+      - ver recomendaciones del medico
+      - tratamiento recomendado
+      - mis indicaciones medicas
+
+  - intent: consultar_medicos_especialidad
+    examples: |
+      - qué médicos hay
+      - ver médicos disponibles
+      - médicos por especialidad
+      - quiero ver los doctores
+      - lista de médicos
+      - médicos de cardiología
+      - doctores disponibles
+      - especialistas disponibles
+      - quiénes son los médicos
+      - ver doctores de la clínica
+
+  - intent: consultar_proxima_cita
+    examples: |
+      - cuál es mi próxima cita
+      - próxima cita
+      - mi siguiente cita
+      - cuando es mi próxima consulta
+      - ver próxima cita
+      - siguiente cita médica
+      - cuándo tengo cita
+      - mi cita más cercana
+      - próxima consulta médica
 
   - intent: agregar_otro_sintoma
     examples: |

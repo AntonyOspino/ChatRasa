@@ -125,3 +125,55 @@ stories:
       - intent: consultar_historial
       - action: action_consultar_historial
       - action: utter_ofrecer_ayuda_general
+
+  # ✅ FLUJOS CLAROS PARA CONSULTAR DATOS DEL PACIENTE, CITAS ANTERIORES, RECOMENDACIONES y MEDICOS POR ESPECIALIDAD
+  - story: consultar datos del paciente
+    steps:
+      - intent: consultar_datos_paciente
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_datos_paciente
+      - action: utter_ofrecer_ayuda_datos_paciente
+
+  - story: consultar citas anteriores
+    steps:
+      - intent: consultar_citas_anteriores
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_citas_anteriores
+      - action: utter_ofrecer_ayuda_citas_anteriores
+
+  - story: consultar recomendaciones médicas
+    steps:
+      - intent: consultar_recomendaciones
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_recomendaciones
+      - action: utter_ofrecer_ayuda_recomendaciones
+
+  - story: consultar médicos por especialidad
+    steps:
+      - intent: consultar_medicos_especialidad
+      - action: action_consultar_medicos_especialidad
+      - action: utter_ofrecer_ayuda_medicos
+
+  - story: consultar próxima cita
+    steps:
+      - intent: consultar_proxima_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_proxima_cita
+      - action: utter_ofrecer_ayuda_proxima_cita
+
+  - story: flujo completo consultas médicas
+    steps:
+      - intent: saludo
+      - action: utter_saludo
+      - intent: consultar_proxima_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_proxima_cita
+      - action: utter_ofrecer_ayuda_proxima_cita
+      - intent: consultar_datos_paciente
+      - action: action_consultar_datos_paciente
+      - action: utter_ofrecer_ayuda_general

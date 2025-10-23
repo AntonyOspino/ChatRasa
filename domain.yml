@@ -44,6 +44,11 @@ intents:
   - consultar_historial
   - consultar_ultimo_diagnostico
   - consultar_especialidades
+  - consultar_datos_paciente
+  - consultar_citas_anteriores
+  - consultar_recomendaciones
+  - consultar_medicos_especialidad
+  - consultar_proxima_cita
 
 actions:
   - action_consultar_cita
@@ -52,6 +57,11 @@ actions:
   - action_consultar_historial
   - action_consultar_ultimo_diagnostico
   - action_consultar_especialidades
+  - action_consultar_datos_paciente
+  - action_consultar_citas_anteriores
+  - action_consultar_recomendaciones
+  - action_consultar_medicos_especialidad
+  - action_consultar_proxima_cita
 
 entities:
   - identificacion
@@ -199,6 +209,26 @@ responses:
   utter_ofrecer_ayuda_especialidades:
     - text: "¿Te gustaría agendar una cita en alguna especialidad o consultar algo más? 🏥"
     - text: "¿Necesitas información sobre alguna especialidad en particular? 💬"
+
+  utter_ofrecer_ayuda_datos_paciente:
+    - text: "¿Necesitas actualizar algún dato o consultar otra información? 📋"
+    - text: "¿Hay algo más que quieras saber sobre tu perfil? 💬"
+
+  utter_ofrecer_ayuda_citas_anteriores:
+    - text: "¿Quieres ver el historial médico de alguna cita específica? 📅"
+    - text: "¿Te gustaría consultar tus diagnósticos anteriores? 🩺"
+
+  utter_ofrecer_ayuda_recomendaciones:
+    - text: "¿Necesitas más detalles sobre alguna recomendación? 💡"
+    - text: "¿Quieres saber algo más sobre tus tratamientos? 💬"
+
+  utter_ofrecer_ayuda_medicos:
+    - text: "¿Te gustaría agendar una cita con algún médico? 👨‍⚕️"
+    - text: "¿Necesitas información sobre otra especialidad? 🏥"
+
+  utter_ofrecer_ayuda_proxima_cita:
+    - text: "¿Quieres ver todas tus citas o consultar algo más? 📅"
+    - text: "¿Necesitas información sobre tu médico asignado? 👨‍⚕️"
 
 session_config:
   session_expiration_time: 60
