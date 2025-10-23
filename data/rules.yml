@@ -175,9 +175,23 @@ rules:
       - intent: ayuda
       - action: utter_ayuda
 
-  - rule: Ejecutar acción tras dar identificación
-    steps:
-      - intent: dar_identificacion
-      - slot_was_set:
-          - identificacion
-      - action: action_consultar_cita
+  # - rule: pedir identificacion si falta para consultar doctor
+  #   steps:
+  #     - intent: consultar_doctor
+  #     - action: utter_pedir_identificacion
+  #     - action: action_listen
+
+  # - rule: consultar doctor con identificacion
+  #   condition:
+  #     - slot_was_set:
+  #         - identificacion
+  #   steps:
+  #     - intent: consultar_doctor
+  #     - action: action_consultar_doctor
+
+  # - rule: Ejecutar acción tras dar identificación
+  #   steps:
+  #     - intent: dar_identificacion
+  #     - slot_was_set:
+  #         - identificacion
+  #     - action: action_consultar_cita

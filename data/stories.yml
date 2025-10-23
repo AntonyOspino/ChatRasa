@@ -139,9 +139,27 @@ stories:
       - intent: dar_identificacion
       - action: action_consultar_cita
 
-  - story: flujo de consulta doctor
+  # - story: flujo de consulta doctor
+  #   steps:
+  #     - intent: consultar_doctor
+  #     - action: utter_pedir_identificacion
+  #     - intent: dar_identificacion
+  #     - action: action_consultar_doctor
+
+  - story: consulta doctor con identificacion
     steps:
       - intent: consultar_doctor
+        entities:
+          - identificacion: "1234567890"
+      - action: action_consultar_doctor
+
+  - story: consulta doctor sin identificacion
+    steps:
+      - intent: consultar_doctor
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+        entities:
+          - identificacion: "1234567890"
       - action: action_consultar_doctor
 
   - story: flujo de resultados

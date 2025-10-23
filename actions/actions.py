@@ -36,6 +36,12 @@ class ActionConsultarCita(Action):
         try:
             identificacion = tracker.get_slot("identificacion")
 
+            # Si no hay identificación, intentar obtenerlo del último mensaje
+            if not identificacion:
+                texto = tracker.latest_message.get("text")
+                if texto.isdigit() and len(texto) >= 6:
+                    identificacion = texto
+
             if not identificacion or not identificacion.isdigit():
                 dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido (solo dígitos).")
                 return []
@@ -113,10 +119,15 @@ class ActionConsultarDoctor(Action):
 
         identificacion = tracker.get_slot("identificacion")
 
-        # Si no hay identificación, pedimos al usuario
-        if not identificacion:
-            dispatcher.utter_message(text="Por favor, indícame tu número de identificación para consultar el doctor asignado.")
-            return []
+        # Si no hay identificación, intentar obtenerlo del último mensaje
+        if not identificacion or not identificacion.isdigit() or len(identificacion) < 6:
+            texto = tracker.latest_message.get("text")
+            if texto and texto.isdigit() and len(texto) >= 6:
+                identificacion = texto
+
+        if not identificacion or not identificacion.isdigit():
+                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido (solo dígitos).")
+                return []
 
         try:
             # Conexión a PostgreSQL (ajusta tus credenciales si es necesario)
@@ -169,11 +180,12 @@ class ActionConsultarDoctor(Action):
             print("Error al consultar el doctor:", e)
             dispatcher.utter_message(text="Hubo un problema al consultar la información del médico.")
         finally:
-            if 'connection' in locals() and connection:
+            if cursor:
                 cursor.close()
-                connection.close()
+            if conn:
+                conn.close()
 
-        return []
+        return [SlotSet("identificacion", None)]
 
 
 # Sistomas

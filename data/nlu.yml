@@ -258,30 +258,35 @@ nlu:
       - quiero consultar mi cita
       - tengo una cita pendiente?
       - dime si tengo cita
-      - mi número de identificación es [1034567890](identificacion)
+      - mi numero de identificacion es [1034567890](identificacion)
       - [9876543210](identificacion)
-      - mi cédula es [1234567890](identificacion)
-      - consultar cita con cédula [1034567890](identificacion)
+      - consultar cita con cedula [1034567890](identificacion)
 
-  - intent: preguntar_fecha_cita
-    examples: |
-      - para cuándo tengo la cita
-      - cuándo es mi cita
-      - qué día tengo la cita
-      - cuándo tengo la cita médica
+  # - intent: preguntar_fecha_cita
+  #   examples: |
+  #     - para cuando tengo la cita
+  #     - cuando es mi cita
+  #     - que dia tengo la cita
+  #     - cuando tengo la cita medica
 
-  - intent: preguntar_medico_asignado
+  # - intent: preguntar_medico_asignado
+  #   examples: |
+  #     - quién es mi médico asignado
+  #     - cuál es mi médico
+  #     - quién me atenderá
+  #     - quién es el doctor de mi cita
+
+  - intent: consultar_doctor
     examples: |
       - quién es mi médico asignado
       - cuál es mi médico
       - quién me atenderá
       - quién es el doctor de mi cita
-
-  - intent: consultar_doctor
-    examples: |
-      - quién es mi doctor
-      - qué doctor me atiende
-      - dime el nombre del médico
+      - quien es mi doctor
+      - que doctor me atiende
+      - dime el nombre del medico
+      - quien es mi doctor con cedula [1034567890](identificacion)
+      - que medico me atendera, mi identificacion es [9876543210](identificacion)
 
   - intent: consultar_resultados
     examples: |
@@ -305,9 +310,8 @@ nlu:
       - mi cedula es [1234567890](identificacion)
       - consultar cita con cédula [1234567890](identificacion)
       - 1234567890
-      - 0987654321
+      - [0987654321](identificacion)
       - 1020304050
       - mi cédula es 4567891230
       - número de identificación: 3216549870
-      - número de identificación: 1234567890
       - mi identificacion es 1234567890
