@@ -121,6 +121,12 @@ nlu:
       - Tengo dolor en el pecho
       - Siento presión en el pecho
       - Tengo una molestia en el pecho
+      - me duele el pecho
+      - dolor en el pecho
+      - siento dolor en el torax
+      - me aprieta el pecho
+      - tengo opresión en el pecho
+      - me duele el corazon
 
   - intent: palpitaciones
     examples: |
@@ -278,8 +284,8 @@ nlu:
 
   - intent: consultar_doctor
     examples: |
-      - quién es mi médico asignado
-      - cuál es mi médico
+      - quién es mi medico asignado
+      - cuál es mi medico
       - quién me atenderá
       - quién es el doctor de mi cita
       - quien es mi doctor

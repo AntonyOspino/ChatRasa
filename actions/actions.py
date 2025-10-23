@@ -14,17 +14,6 @@ def get_connection():
     return psycopg2.connect(connection_string)
 
 
-# Usuario
-# class ActionValidarUsuarioAPI(Action):
-#     def name(self) -> Text:
-#         return "action_validar_usuario_api"
-
-#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-#         nombre_usuario = tracker.get_slot("nombre_usuario")
-#         dispatcher.utter_message(text=f"Verificando usuario '{nombre_usuario}' en el sistema... (simulación API)")
-#         return []
-
-
 # Citas
 class ActionConsultarCita(Action):
     def name(self):
@@ -77,7 +66,7 @@ class ActionConsultarCita(Action):
                 mensajes = []
                 for cita in citas:
                     fecha, hora = cita
-                    mensajes.append(f"📅 {fecha} a las {hora}")
+                    mensajes.append(f"{fecha} a las {hora}")
                 if len(citas) == 1:
                     mensaje_final = f"Tienes una cita activa el {citas[0][0]} a las {citas[0][1]}"
                 else:
@@ -98,16 +87,142 @@ class ActionConsultarCita(Action):
 
 
 
-# Diagnosticos
-# class ActionObtenerDiagnosticoAPI(Action):
-#     def name(self) -> Text:
-#         return "action_obtener_diagnostico_api"
+# Historial
+class ActionConsultarHistorial(Action):
+    def name(self):
+        return "action_consultar_historial"
 
-#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-#         dispatcher.utter_message(text="Buscando tu diagnóstico más reciente... (simulación API)")
-#         dispatcher.utter_message(text="Último diagnóstico: presión arterial estable, continuar con dieta saludable.")
-#         return []
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        conn = None
+        cursor = None
+        try:
+            identificacion = tracker.get_slot("identificacion")
+            
+            if not identificacion:
+                texto = tracker.latest_message.get("text")
+                if texto and texto.isdigit() and len(texto) >= 6:
+                    identificacion = texto
 
+            if not identificacion or not identificacion.isdigit():
+                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+                return []
+
+            conn = get_connection()
+            cursor = conn.cursor()
+
+            # Buscar el usuario
+            cursor.execute("SELECT id FROM usuario WHERE identificacion = %s;", (identificacion,))
+            usuario = cursor.fetchone()
+
+            if not usuario:
+                dispatcher.utter_message(text="❌ No encontré ningún usuario con esa identificación.")
+                return []
+
+            usuario_id = usuario[0]
+
+            # Obtener historial médico
+            cursor.execute("""
+                SELECT hm.diagnostico, hm.recomendaciones, hm.sistema, 
+                       c.fecha_cita, hm.fecha_creacion
+                FROM historial_medico hm
+                JOIN cita c ON hm.cita_id = c.id
+                WHERE c.usuario_paciente_id = %s
+                ORDER BY hm.fecha_creacion DESC
+                LIMIT 5;
+            """, (usuario_id,))
+
+            historiales = cursor.fetchall()
+
+            if historiales:
+                mensaje = "📋 **Tu historial médico reciente:**\n\n"
+                for hist in historiales:
+                    diagnostico, recomendaciones, sistema, fecha_cita, fecha_creacion = hist
+                    mensaje += f"📅 Fecha: {fecha_cita}\n"
+                    mensaje += f"🔍 Sistema: {sistema}\n"
+                    mensaje += f"💊 Diagnóstico: {diagnostico}\n"
+                    mensaje += f"📝 Recomendaciones: {recomendaciones}\n"
+                    mensaje += "─" * 40 + "\n\n"
+                dispatcher.utter_message(text=mensaje)
+            else:
+                dispatcher.utter_message(text="No tienes historial médico registrado aún 📋")
+                
+        except Exception as e:
+            dispatcher.utter_message(text=f"⚠️ Error al consultar historial: {e}")
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()
+
+        return []
+
+# Diagnostico
+class ActionConsultarUltimoDiagnostico(Action):
+    def name(self):
+        return "action_consultar_ultimo_diagnostico"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        conn = None
+        cursor = None
+        try:
+            identificacion = tracker.get_slot("identificacion")
+            
+            if not identificacion:
+                texto = tracker.latest_message.get("text")
+                if texto and texto.isdigit() and len(texto) >= 6:
+                    identificacion = texto
+
+            if not identificacion or not identificacion.isdigit():
+                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+                return []
+
+            conn = get_connection()
+            cursor = conn.cursor()
+
+            cursor.execute("SELECT id FROM usuario WHERE identificacion = %s;", (identificacion,))
+            usuario = cursor.fetchone()
+
+            if not usuario:
+                dispatcher.utter_message(text="❌ No encontré ningún usuario con esa identificación.")
+                return []
+
+            usuario_id = usuario[0]
+
+            # Obtener último diagnóstico
+            cursor.execute("""
+                SELECT hm.diagnostico, hm.sistema, c.fecha_cita, 
+                       u.nombre, u.apellido
+                FROM historial_medico hm
+                JOIN cita c ON hm.cita_id = c.id
+                LEFT JOIN usuario u ON c.usuario_medico_id = u.id
+                WHERE c.usuario_paciente_id = %s
+                ORDER BY hm.fecha_creacion DESC
+                LIMIT 1;
+            """, (usuario_id,))
+
+            diagnostico = cursor.fetchone()
+
+            if diagnostico:
+                diag, sistema, fecha, nombre_med, apellido_med = diagnostico
+                medico = f"Dr./Dra. {nombre_med} {apellido_med}" if nombre_med else "No especificado"
+                mensaje = f"🩺 **Último diagnóstico:**\n\n"
+                mensaje += f"📅 Fecha: {fecha}\n"
+                mensaje += f"👨‍⚕️ Médico: {medico}\n"
+                mensaje += f"🔍 Sistema evaluado: {sistema}\n"
+                mensaje += f"💊 Diagnóstico: {diag}"
+                dispatcher.utter_message(text=mensaje)
+            else:
+                dispatcher.utter_message(text="No tienes diagnósticos registrados todavía 🩺")
+                
+        except Exception as e:
+            dispatcher.utter_message(text=f"⚠️ Error al consultar diagnóstico: {e}")
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()
+
+        return []
 
 # Medicos y notificaciones
 class ActionConsultarDoctor(Action):
@@ -173,7 +288,7 @@ class ActionConsultarDoctor(Action):
 
             if doctor:
                 nombre_doctor = f"{doctor[0]} {doctor[1]}"
-                dispatcher.utter_message(text=f"Tu médico asignado es el Dr./Dra. {nombre_doctor} 👨‍⚕️")
+                dispatcher.utter_message(text=f"Tu médico asignado es el Dr./Dra. {nombre_doctor}")
             else:
                 dispatcher.utter_message(text="No encontré los datos del médico asignado a tu cita.")
 
@@ -189,31 +304,46 @@ class ActionConsultarDoctor(Action):
         return []
 
 
-# Sistomas
-# class ActionRecomendarSegunSintomas(Action):
-#     def name(self) -> Text:
-#         return "action_recomendar_según_sintomas"
+# Especialidades
+class ActionConsultarEspecialidades(Action):
+    def name(self):
+        return "action_consultar_especialidades"
 
-#     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]):
-#         sintoma = tracker.latest_message.get("text")
-#         sintomas_usuario.append(sintoma)
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
+        conn = None
+        cursor = None
+        try:
+            conn = get_connection()
+            cursor = conn.cursor()
 
-#         # respuestas personalizadas
-#         recomendaciones = {
-#             "pecho": "El dolor en el pecho puede ser signo de angina o infarto. Evita esfuerzos y consulta un médico.",
-#             "mare": "El mareo puede estar asociado a baja presión o ritmo cardíaco irregular.",
-#             "palpit": "Las palpitaciones pueden deberse al estrés o arritmias. Evita cafeína y mantén reposo.",
-#             "presión": "Los cambios de presión afectan directamente al sistema cardiovascular. Controla tu tensión arterial.",
-#             "falta de aire": "La falta de aire puede indicar insuficiencia cardíaca o ansiedad.",
-#             "hinchad": "La hinchazón en pies puede deberse a retención de líquidos o problemas cardíacos."
-#         }
+            # Obtener todas las especialidades
+            cursor.execute("""
+                SELECT nombre, descripcion 
+                FROM especialidad 
+                ORDER BY nombre;
+            """)
 
-#         texto = sintoma.lower()
-#         recomendacion = "Te recomiendo mantener reposo y observar tus síntomas."
-#         for palabra, respuesta in recomendaciones.items():
-#             if palabra in texto:
-#                 recomendacion = respuesta
-#                 break
+            especialidades = cursor.fetchall()
 
-#         dispatcher.utter_message(text=f"Gracias por compartirlo. {recomendacion}")
-#         return []
+            if especialidades:
+                mensaje = "🏥 **Especialidades disponibles:**\n\n"
+                for esp in especialidades:
+                    nombre, descripcion = esp
+                    mensaje += f"• **{nombre}**"
+                    if descripcion:
+                        mensaje += f": {descripcion}"
+                    mensaje += "\n"
+                dispatcher.utter_message(text=mensaje)
+            else:
+                dispatcher.utter_message(text="No hay especialidades registradas en el sistema 🏥")
+                
+        except Exception as e:
+            dispatcher.utter_message(text=f"⚠️ Error al consultar especialidades: {e}")
+        finally:
+            if cursor:
+                cursor.close()
+            if conn:
+                conn.close()
+
+        return []
+

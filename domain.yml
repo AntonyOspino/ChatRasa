@@ -163,9 +163,24 @@ responses:
 
   utter_ofrecer_ayuda:
     - text: "¿Tienes otro síntoma o algo más en lo que pueda ayudarte? 💬"
-    - text: "¿Hay algo más que te esté molestando? 🤔"
-    - text: "¿Puedo ayudarte con otro malestar? 💬"
-    - text: "¿Quieres contarme si tienes otro síntoma? 😊"
+    - text: "¿Hay algo más que te esté molestando?"
+    - text: "¿Puedo ayudarte con otro malestar?"
+    - text: "¿Quieres contarme si tienes otro síntoma?"
+
+  # ✅ NUEVAS RESPUESTAS ESPECIALIZADAS
+  utter_ofrecer_ayuda_cita:
+    - text: "¿Necesitas consultar algo más sobre tus citas o quieres saber quién es tu médico? 📅"
+    - text: "¿Te gustaría saber quién es tu doctor asignado o tienes otra consulta? 👨‍⚕️"
+    - text: "¿Hay algo más en lo que pueda ayudarte con tus citas médicas? 💬"
+
+  utter_ofrecer_ayuda_doctor:
+    - text: "¿Deseas consultar tus próximas citas o necesitas algo más? 📋"
+    - text: "¿Quieres ver tus citas programadas o tienes otra pregunta? 🗓️"
+    - text: "¿Hay algo más en lo que te pueda ayudar? Puedo mostrarte tus citas también 💬"
+
+  utter_ofrecer_ayuda_general:
+    - text: "¿En qué más puedo ayudarte? Puedo consultar tus citas, mostrarte tu médico asignado o darte consejos de salud 💙"
+    - text: "¿Necesitas algo más? Estoy aquí para ayudarte con tus consultas médicas o síntomas 😊"
 
   utter_pedir_identificacion:
     - text: "Por favor, indícame tu número de identificación para la consulta."

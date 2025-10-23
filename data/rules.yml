@@ -175,34 +175,24 @@ rules:
       - intent: ayuda
       - action: utter_ayuda
 
-  - rule: pedir identificacion para consultar cita
-    steps:
-      - intent: consultar_cita
-      - action: utter_pedir_identificacion
+  # ✅ FLUJOS COMPLETOS PARA CITAS Y DOCTORES
 
-  - rule: procesar consulta cita con identificacion
-    steps:
-      - intent: dar_identificacion
-      - action: action_consultar_cita
-      - action: utter_ofrecer_ayuda
+  # - rule: Consultar cita sin identificacion
+  #   steps:
+  #     - intent: consultar_cita
+  #     - action: utter_pedir_identificacion
 
-  # - rule: pedir identificacion si falta para consultar doctor
+  # - rule: Ejecutar consulta cita con identificacion
+  #   steps:
+  #     - intent: dar_identificacion
+  #     - action: action_consultar_cita
+
+  # - rule: Consultar doctor sin identificacion
   #   steps:
   #     - intent: consultar_doctor
   #     - action: utter_pedir_identificacion
-  #     - action: action_listen
 
-  # - rule: consultar doctor con identificacion
-  #   condition:
-  #     - slot_was_set:
-  #         - identificacion
-  #   steps:
-  #     - intent: consultar_doctor
-  #     - action: action_consultar_doctor
-
-  # - rule: Ejecutar acción tras dar identificación
+  # - rule: Ejecutar consulta doctor con identificacion
   #   steps:
   #     - intent: dar_identificacion
-  #     - slot_was_set:
-  #         - identificacion
-  #     - action: action_consultar_cita
+  #     - action: action_consultar_doctor

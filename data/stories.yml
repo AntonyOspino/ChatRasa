@@ -21,97 +21,6 @@ stories:
       - intent: eres_bot
       - action: utter_eres_bot
 
-  # Flujos por síntomas
-  # - story: flujo dolor pecho
-  #   steps:
-  #     - intent: dolor_pecho
-  #     - action: utter_dolor_pecho
-
-  # - story: flujo palpitaciones
-  #   steps:
-  #     - intent: palpitaciones
-  #     - action: utter_palpitaciones
-
-  # - story: flujo mareo
-  #   steps:
-  #     - intent: mareo
-  #     - action: utter_mareo
-
-  # - story: flujo falta aire
-  #   steps:
-  #     - intent: falta_aire
-  #     - action: utter_falta_aire
-
-  # - story: flujo fatiga
-  #   steps:
-  #     - intent: fatiga
-  #     - action: utter_fatiga
-
-  # - story: flujo dolor brazo izquierdo
-  #   steps:
-  #     - intent: dolor_brazo_izquierdo
-  #     - action: utter_dolor_brazo_izquierdo
-
-  # - story: flujo dolor cuello
-  #   steps:
-  #     - intent: dolor_cuello
-  #     - action: utter_dolor_cuello
-
-  # - story: flujo dolor cabeza
-  #   steps:
-  #     - intent: dolor_cabeza
-  #     - action: utter_dolor_cabeza
-
-  # - story: flujo pies hinchados
-  #   steps:
-  #     - intent: pies_hinchados
-  #     - action: utter_pies_hinchados
-
-  # - story: flujo labios morados
-  #   steps:
-  #     - intent: labios_morados
-  #     - action: utter_labios_morados
-
-  # - story: flujo desmayo
-  #   steps:
-  #     - intent: desmayo
-  #     - action: utter_desmayo
-
-  # - story: flujo ansiedad cardiaca
-  #   steps:
-  #     - intent: ansiedad_cardiaca
-  #     - action: utter_ansiedad_cardiaca
-
-  # - story: flujo presion alta
-  #   steps:
-  #     - intent: presion_alta
-  #     - action: utter_presion_alta
-
-  # - story: flujo presion baja
-  #   steps:
-  #     - intent: presion_baja
-  #     - action: utter_presion_baja
-
-  # - story: flujo dolor esfuerzo
-  #   steps:
-  #     - intent: dolor_esfuerzo
-  #     - action: utter_dolor_esfuerzo
-
-  # - story: flujo hormigueo
-  #   steps:
-  #     - intent: hormigueo
-  #     - action: utter_hormigueo
-
-  # - story: flujo nauseas
-  #   steps:
-  #     - intent: nauseas
-  #     - action: utter_nauseas
-
-  # - story: flujo recomendaciones
-  #   steps:
-  #     - intent: recomendacion_general
-  #     - action: utter_recomendacion_general
-
   - story: usuario pide consejos
     steps:
       - intent: consejos
@@ -132,37 +41,30 @@ stories:
       - intent: ayuda
       - action: utter_ayuda
 
-  # - story: flujo de consulta cita
-  #   steps:
-  #     - intent: consultar_cita
-  #     - action: utter_pedir_identificacion
-  #     - intent: dar_identificacion
-  #     - action: action_consultar_cita
-
-  # - story: flujo de consulta doctor
-  #   steps:
-  #     - intent: consultar_doctor
-  #     - action: utter_pedir_identificacion
-  #     - intent: dar_identificacion
-  #     - action: action_consultar_doctor
-
-  - story: consulta doctor con identificacion
+  - story: usuario responde sobre intensidad del dolor
     steps:
-      - intent: consultar_doctor
-        entities:
-          - identificacion: "1234567890"
-      - action: action_consultar_doctor
+      - intent: describir_dolor
+      - action: utter_recomendacion_medica
 
-  - story: consulta doctor sin identificacion
+  # ✅ FLUJOS CLAROS PARA CONSULTAR CITA
+  - story: consultar cita completo
+    steps:
+      - intent: consultar_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_cita
+      - action: utter_ofrecer_ayuda_cita
+
+  # ✅ FLUJOS CLAROS PARA CONSULTAR DOCTOR
+  - story: consultar doctor completo
     steps:
       - intent: consultar_doctor
       - action: utter_pedir_identificacion
       - intent: dar_identificacion
-        entities:
-          - identificacion: "1234567890"
       - action: action_consultar_doctor
+      - action: utter_ofrecer_ayuda_doctor
 
-  - story: flujo basico de consultas
+  - story: consultar cita y luego doctor
     steps:
       - intent: saludo
       - action: utter_saludo
@@ -170,65 +72,20 @@ stories:
       - action: utter_pedir_identificacion
       - intent: dar_identificacion
       - action: action_consultar_cita
+      - action: utter_ofrecer_ayuda_cita
       - intent: consultar_doctor
       - action: action_consultar_doctor
-      - action: utter_ofrecer_ayuda
+      - action: utter_ofrecer_ayuda_general
 
-  # - story: flujo de resultados
-  #   steps:
-  #     - intent: consultar_resultados
-  #     - action: action_consultar_resultados
-
-  # - story: usuario reporta dolor en el pecho paso a paso
-  #   steps:
-  #     - intent: estado_animo
-  #     - action: utter_estado_animo
-  #     - intent: informar_sintoma
-  #     - action: utter_dolor_pecho
-
-  - story: usuario responde sobre intensidad del dolor
+  - story: consultar doctor y luego cita
     steps:
-      - intent: describir_dolor
-      - action: utter_recomendacion_medica
-
-  # - story: usuario acepta consejos o cita
-  #   steps:
-  #     - intent: aceptar_consejos
-  #     - action: utter_prevencion
-
-  # - story: usuario pregunta por la fecha de su cita
-  #   steps:
-  #     - intent: preguntar_fecha_cita
-  #     - action: action_obtener_citas_api
-
-  # - story: usuario pregunta por el médico asignado
-  #   steps:
-  #     - intent: preguntar_medico_asignado
-  #     - action: action_obtener_medico_api
-
-  # - story: flujo principal de síntomas
-  #   steps:
-  #     - intent: saludo
-  #     - action: utter_saludo
-  #     - intent: informar_sintoma
-  #     - action: action_recomendar_segun_sintomas
-  #     - action: utter_preguntar_otro_sintoma
-  #     - or:
-  #         - intent: agregar_otro_sintoma
-  #         - intent: informar_sintoma
-  #     - action: action_recomendar_segun_sintomas
-  #     - action: utter_preguntar_otro_sintoma
-
-  # - story: primer sintoma
-  #   steps:
-  #     - intent: informar_sintoma
-  #     - action: action_recomendar_segun_sintomas
-  #     - action: utter_preguntar_otro_sintoma
-
-  # - story: agregar otro sintoma
-  #   steps:
-  #     - or:
-  #         - intent: agregar_otro_sintoma
-  #         - intent: informar_sintoma
-  #     - action: action_recomendar_segun_sintomas
-  #     - action: utter_preguntar_otro_sintoma
+      - intent: saludo
+      - action: utter_saludo
+      - intent: consultar_doctor
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+      - action: action_consultar_doctor
+      - action: utter_ofrecer_ayuda_doctor
+      - intent: consultar_cita
+      - action: action_consultar_cita
+      - action: utter_ofrecer_ayuda_general
