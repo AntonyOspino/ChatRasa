@@ -4,6 +4,7 @@ from rasa_sdk.events import SlotSet
 import psycopg2
 from dotenv import load_dotenv
 import os
+import unicodedata
 
 # cargar variables de entorno .env
 load_dotenv()
@@ -28,13 +29,21 @@ class ActionConsultarCita(Action):
 
             # Si no hay identificación, intentar obtenerlo del último mensaje
             if not identificacion:
-                texto = tracker.latest_message.get("text")
-                if texto.isdigit() and len(texto) >= 6:
+                texto = tracker.latest_message.get("text", "")
+                if texto and texto.isdigit() and len(texto) >= 6:
                     identificacion = texto
+                else:
+                    dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
+                    return []
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido (solo dígitos).")
+            # Validar que sea numérico
+            if not identificacion.isdigit() or len(identificacion) < 6:
+                dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
                 return []
+
+            # if not identificacion or not identificacion.isdigit():
+            #     dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido (solo dígitos).")
+            #     return []
 
             conn = get_connection()
             cursor = conn.cursor()
@@ -96,12 +105,16 @@ class ActionConsultarCitasAnteriores(Action):
             identificacion = tracker.get_slot("identificacion")
             
             if not identificacion:
-                texto = tracker.latest_message.get("text")
+                texto = tracker.latest_message.get("text", "")
                 if texto and texto.isdigit() and len(texto) >= 6:
                     identificacion = texto
+                else:
+                    dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
+                    return []
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+            # Validar que sea numérico
+            if not identificacion.isdigit() or len(identificacion) < 6:
+                dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
                 return []
 
             conn = get_connection()
@@ -165,12 +178,16 @@ class ActionConsultarProximaCita(Action):
             identificacion = tracker.get_slot("identificacion")
             
             if not identificacion:
-                texto = tracker.latest_message.get("text")
+                texto = tracker.latest_message.get("text", "")
                 if texto and texto.isdigit() and len(texto) >= 6:
                     identificacion = texto
+                else:
+                    dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
+                    return []
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+            # Validar que sea numérico
+            if not identificacion.isdigit() or len(identificacion) < 6:
+                dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
                 return []
 
             conn = get_connection()
@@ -236,12 +253,16 @@ class ActionConsultarHistorial(Action):
             identificacion = tracker.get_slot("identificacion")
             
             if not identificacion:
-                texto = tracker.latest_message.get("text")
+                texto = tracker.latest_message.get("text", "")
                 if texto and texto.isdigit() and len(texto) >= 6:
                     identificacion = texto
+                else:
+                    dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
+                    return []
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+            # Validar que sea numérico
+            if not identificacion.isdigit() or len(identificacion) < 6:
+                dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
                 return []
 
             conn = get_connection()
@@ -306,12 +327,16 @@ class ActionConsultarUltimoDiagnostico(Action):
             identificacion = tracker.get_slot("identificacion")
             
             if not identificacion:
-                texto = tracker.latest_message.get("text")
+                texto = tracker.latest_message.get("text", "")
                 if texto and texto.isdigit() and len(texto) >= 6:
                     identificacion = texto
+                else:
+                    dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
+                    return []
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+            # Validar que sea numérico
+            if not identificacion.isdigit() or len(identificacion) < 6:
+                dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
                 return []
 
             conn = get_connection()
@@ -375,14 +400,18 @@ class ActionConsultarDoctor(Action):
         identificacion = tracker.get_slot("identificacion")
 
         # Si no hay identificación, intentar obtenerlo del último mensaje
-        if not identificacion or not identificacion.isdigit() or len(identificacion) < 6:
-            texto = tracker.latest_message.get("text")
+        if not identificacion:
+            texto = tracker.latest_message.get("text", "")
             if texto and texto.isdigit() and len(texto) >= 6:
                 identificacion = texto
-
-        if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido (solo dígitos).")
+            else:
+                dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
                 return []
+
+        # Validar que sea numérico
+        if not identificacion.isdigit() or len(identificacion) < 6:
+            dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
+            return []
 
         try:
             # Conexión a PostgreSQL (ajusta tus credenciales si es necesario)
@@ -496,26 +525,40 @@ class ActionConsultarMedicosEspecialidad(Action):
         conn = None
         cursor = None
         try:
-            # Intentar obtener la especialidad del mensaje
-            texto = tracker.latest_message.get("text", "").lower()
+            def normalizar_texto(texto):
+                """Quitar tildes y convertir a minúsculas"""
+                texto = texto.lower()
+                texto = ''.join(
+                    c for c in unicodedata.normalize('NFD', texto)
+                    if unicodedata.category(c) != 'Mn'
+                )
+                return texto
+            
+            texto_original = tracker.latest_message.get("text", "")
+            texto = normalizar_texto(texto_original)
+            
+            print(f"DEBUG - Texto normalizado: {texto}")  # ← Para debug
             
             conn = get_connection()
             cursor = conn.cursor()
 
-            # Buscar especialidad mencionada
             cursor.execute("SELECT id, nombre FROM especialidad;")
             especialidades = cursor.fetchall()
             
             especialidad_id = None
             especialidad_nombre = None
             
+            # Buscar coincidencia
             for esp_id, esp_nombre in especialidades:
-                if esp_nombre.lower() in texto:
+                nombre_normalizado = normalizar_texto(esp_nombre)
+                print(f"DEBUG - Comparando '{texto}' con '{nombre_normalizado}'")  # ← Debug
+                
+                if nombre_normalizado in texto or texto in nombre_normalizado:
                     especialidad_id = esp_id
                     especialidad_nombre = esp_nombre
                     break
             
-            # Si no se encuentra especialidad en el texto, mostrar todas
+            # Si no se encuentra, mostrar todas
             if not especialidad_id:
                 cursor.execute("""
                     SELECT e.nombre, COUNT(m.medico_id) as cantidad
@@ -530,18 +573,15 @@ class ActionConsultarMedicosEspecialidad(Action):
                 if datos:
                     mensaje = "👨‍⚕️ **Médicos disponibles por especialidad:**\n\n"
                     for esp, cant in datos:
-                        mensaje += f"🏥 {esp}: {cant} médico(s)\n"
-                    # ✅ MENSAJE MEJORADO
-                    mensaje += "\n💡 Para ver los médicos de una especialidad específica, escribe:\n"
-                    mensaje += "• 'médicos de electrofisiología'\n"
-                    mensaje += "• 'doctores de medicina general'\n"
-                    mensaje += "• 'especialistas en [nombre de especialidad]'"
+                        mensaje += f"🏥 {esp}: {cant} medico(s)\n"
+                    mensaje += "\n💡 Menciona una especialidad para ver sus medicos:\n"
+                    mensaje += "Ejemplo: 'medicos de electrofisiologia' o 'doctores de medicina general'"
                     dispatcher.utter_message(text=mensaje)
                 else:
-                    dispatcher.utter_message(text="No hay información de médicos disponible 👨‍⚕️")
+                    dispatcher.utter_message(text="No hay informacion de medicos disponible")
                 return []
             
-            # Si se encontró especialidad, mostrar médicos de esa especialidad
+            # Mostrar médicos de la especialidad
             cursor.execute("""
                 SELECT u.nombre, u.apellido, u.correo
                 FROM medico m
@@ -553,16 +593,17 @@ class ActionConsultarMedicosEspecialidad(Action):
             medicos = cursor.fetchall()
             
             if medicos:
-                mensaje = f"👨‍⚕️ **Médicos de {especialidad_nombre}:**\n\n"
+                mensaje = f"👨‍⚕️ **Medicos de {especialidad_nombre}:**\n\n"
                 for nombre, apellido, correo in medicos:
                     mensaje += f"• Dr./Dra. {nombre} {apellido}\n"
                     mensaje += f"  📧 {correo}\n\n"
                 dispatcher.utter_message(text=mensaje)
             else:
-                dispatcher.utter_message(text=f"No hay médicos registrados en {especialidad_nombre} 👨‍⚕️")
+                dispatcher.utter_message(text=f"No hay medicos registrados en {especialidad_nombre}")
                 
         except Exception as e:
-            dispatcher.utter_message(text=f"⚠️ Error al consultar médicos: {e}")
+            print(f"ERROR en action_consultar_medicos_especialidad: {e}")  # ← Debug
+            dispatcher.utter_message(text=f"⚠️ Error al consultar medicos: {e}")
         finally:
             if cursor:
                 cursor.close()
@@ -579,18 +620,23 @@ class ActionConsultarDatosPaciente(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
         conn = None
         cursor = None
-        try:
-            identificacion = tracker.get_slot("identificacion")
-            
-            if not identificacion:
-                texto = tracker.latest_message.get("text")
-                if texto and texto.isdigit() and len(texto) >= 6:
-                    identificacion = texto
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+        identificacion = tracker.get_slot("identificacion")
+
+        if not identificacion:
+            texto = tracker.latest_message.get("text", "")
+            if texto and texto.isdigit() and len(texto) >= 6:
+                identificacion = texto
+            else:
+                dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
                 return []
 
+        # Validar que sea numérico
+        if not identificacion.isdigit() or len(identificacion) < 6:
+            dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
+            return []
+
+        try:
             conn = get_connection()
             cursor = conn.cursor()
 
@@ -645,17 +691,23 @@ class ActionConsultarRecomendaciones(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: dict):
         conn = None
         cursor = None
-        try:
-            identificacion = tracker.get_slot("identificacion")
-            
-            if not identificacion:
-                texto = tracker.latest_message.get("text")
-                if texto and texto.isdigit() and len(texto) >= 6:
-                    identificacion = texto
 
-            if not identificacion or not identificacion.isdigit():
-                dispatcher.utter_message(text="⚠️ Por favor, ingresa un número de identificación válido.")
+        identificacion = tracker.get_slot("identificacion")
+
+        if not identificacion:
+            texto = tracker.latest_message.get("text", "")
+            if texto and texto.isdigit() and len(texto) >= 6:
+                identificacion = texto
+            else:
+                dispatcher.utter_message(text="⚠️ Por favor, proporciona tu número de identificación.")
                 return []
+
+        # Validar que sea numérico
+        if not identificacion.isdigit() or len(identificacion) < 6:
+            dispatcher.utter_message(text="⚠️ El número de identificación debe contener solo dígitos y tener al menos 6 caracteres.")
+            return []
+
+        try:
 
             conn = get_connection()
             cursor = conn.cursor()

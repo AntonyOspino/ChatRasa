@@ -183,3 +183,12 @@ stories:
       - intent: consultar_medicos_especialidad
       - action: action_consultar_medicos_especialidad
       - action: utter_ofrecer_ayuda_medicos
+
+  - story: consultar cita sin identificacion valida
+    steps:
+      - intent: consultar_cita
+      - action: utter_pedir_identificacion
+      - intent: dar_identificacion
+        entities:
+          - identificacion: "abc123" # Inválida
+      - action: action_consultar_cita # Debe validar y rechazar

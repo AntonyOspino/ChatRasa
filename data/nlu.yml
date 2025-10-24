@@ -64,6 +64,8 @@ nlu:
       - que alimentos son buenos para el corazon
       - que debo comer para tener buena salud cardiovascular
       - que dieta recomiendas para el sistema cardiovascular
+      - alimentos para el corazon
+      - comida saludable para el corazon
 
   - intent: ejercicio_recomendado
     examples: |
@@ -143,6 +145,8 @@ nlu:
       - me cuesta respirar
       - tengo dificultad para respirar
       - me ahogo al caminar
+      - no puedo respirar bien
+      - siento que me falta oxigeno
 
   - intent: fatiga
     examples: |
@@ -150,6 +154,8 @@ nlu:
       - estoy fatigado
       - me siento sin energia
       - me agoto facilmente
+      - estoy muy cansado
+      - siento mucho cansancio
 
   - intent: dolor_brazo_izquierdo
     examples: |
@@ -217,6 +223,8 @@ nlu:
       - tengo nauseas
       - siento ganas de vomitar
       - me siento con el estomago revuelto
+      - tengo nausea
+      - siento nauseas
 
   - intent: recomendacion_general
     examples: |

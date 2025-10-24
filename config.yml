@@ -7,8 +7,13 @@ pipeline:
   - name: RegexFeaturizer
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 3
+    max_ngram: 5
   - name: DIETClassifier
-    epochs: 100
+    epochs: 200
+    learning_rate: 0.002
+    constrain_similarities: true
   - name: EntitySynonymMapper
   - name: ResponseSelector
 
@@ -16,6 +21,6 @@ policies:
   - name: RulePolicy
   - name: MemoizationPolicy
   - name: TEDPolicy
-    epochs: 100
-
+    epochs: 150
+    constrain_similarities: true
 assistant_id: 20251008-191204-angry-cathode
