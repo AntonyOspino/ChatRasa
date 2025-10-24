@@ -84,6 +84,7 @@ class ActionConsultarCita(Action):
                 conn.close()
 
         return []
+    
 class ActionConsultarCitasAnteriores(Action):
     def name(self):
         return "action_consultar_citas_anteriores"
@@ -152,6 +153,7 @@ class ActionConsultarCitasAnteriores(Action):
                 conn.close()
 
         return []
+    
 class ActionConsultarProximaCita(Action):
     def name(self):
         return "action_consultar_proxima_cita"
@@ -220,6 +222,7 @@ class ActionConsultarProximaCita(Action):
                 conn.close()
 
         return []
+    
 
 # Historial
 class ActionConsultarHistorial(Action):
@@ -289,6 +292,7 @@ class ActionConsultarHistorial(Action):
                 conn.close()
 
         return []
+    
 
 # Diagnostico
 class ActionConsultarUltimoDiagnostico(Action):
@@ -357,6 +361,7 @@ class ActionConsultarUltimoDiagnostico(Action):
                 conn.close()
 
         return []
+
 
 # Medicos
 class ActionConsultarDoctor(Action):
@@ -436,6 +441,7 @@ class ActionConsultarDoctor(Action):
                 conn.close()
 
         return []
+    
 
 # Especialidades
 class ActionConsultarEspecialidades(Action):
@@ -479,6 +485,7 @@ class ActionConsultarEspecialidades(Action):
                 conn.close()
 
         return []
+    
 
 # Medicos Y Especialidades
 class ActionConsultarMedicosEspecialidad(Action):
@@ -524,7 +531,11 @@ class ActionConsultarMedicosEspecialidad(Action):
                     mensaje = "👨‍⚕️ **Médicos disponibles por especialidad:**\n\n"
                     for esp, cant in datos:
                         mensaje += f"🏥 {esp}: {cant} médico(s)\n"
-                    mensaje += "\n💡 Tip: Menciona una especialidad específica para ver los médicos disponibles."
+                    # ✅ MENSAJE MEJORADO
+                    mensaje += "\n💡 Para ver los médicos de una especialidad específica, escribe:\n"
+                    mensaje += "• 'médicos de electrofisiología'\n"
+                    mensaje += "• 'doctores de medicina general'\n"
+                    mensaje += "• 'especialistas en [nombre de especialidad]'"
                     dispatcher.utter_message(text=mensaje)
                 else:
                     dispatcher.utter_message(text="No hay información de médicos disponible 👨‍⚕️")

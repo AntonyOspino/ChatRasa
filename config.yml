@@ -8,8 +8,7 @@ pipeline:
   - name: LexicalSyntacticFeaturizer
   - name: CountVectorsFeaturizer
   - name: DIETClassifier
-    epochs: 50
-    hidden_units: 256
+    epochs: 100
   - name: EntitySynonymMapper
   - name: ResponseSelector
 
@@ -17,7 +16,6 @@ policies:
   - name: RulePolicy
   - name: MemoizationPolicy
   - name: TEDPolicy
-    epochs: 50
-    hidden_units: 256
+    epochs: 100
 
 assistant_id: 20251008-191204-angry-cathode

@@ -177,3 +177,9 @@ stories:
       - intent: consultar_datos_paciente
       - action: action_consultar_datos_paciente
       - action: utter_ofrecer_ayuda_general
+
+  - story: consultar médicos de especialidad específica
+    steps:
+      - intent: consultar_medicos_especialidad
+      - action: action_consultar_medicos_especialidad
+      - action: utter_ofrecer_ayuda_medicos

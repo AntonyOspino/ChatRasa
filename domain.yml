@@ -227,8 +227,9 @@ responses:
     - text: "¿Necesitas información sobre otra especialidad? 🏥"
 
   utter_ofrecer_ayuda_proxima_cita:
-    - text: "¿Quieres ver todas tus citas o consultar algo más? 📅"
+    - text: "¿Quieres ver todas tus citas programadas o consultar algo más? 📅"
     - text: "¿Necesitas información sobre tu médico asignado? 👨‍⚕️"
+    - text: "¿Te gustaría agendar otra cita o consultar tu historial? 💬"
 
 session_config:
   session_expiration_time: 60

@@ -3,12 +3,12 @@ version: "3.1"
 nlu:
   - intent: saludo
     examples: |
-      - Hola
-      - Buenas
-      - buenos días
-      - qué tal
+      - hola
+      - buenas
+      - buenos dias
+      - que tal
       - hola asistente
-      - hola, cómo estás
+      - hola como estas
       - buenas tardes
       - buenas noches
 
@@ -29,61 +29,61 @@ nlu:
 
   - intent: que_es_sistema_cardiovascular
     examples: |
-      - ¿Qué es el sistema cardiovascular?
-      - ¿Me puedes explicar qué hace el sistema cardiovascular?
-      - ¿Cuál es la función del sistema cardiovascular?
+      - que es el sistema cardiovascular
+      - me puedes explicar que hace el sistema cardiovascular
+      - cual es la funcion del sistema cardiovascular
 
   - intent: partes_del_sistema
     examples: |
-      - ¿Cuáles son las partes del sistema cardiovascular?
-      - ¿Qué órganos lo componen?
-      - ¿Qué incluye el sistema cardiovascular?
+      - cuales son las partes del sistema cardiovascular
+      - que organos lo componen
+      - que incluye el sistema cardiovascular
 
   - intent: enfermedades_comunes
     examples: |
-      - ¿Cuáles son las enfermedades más comunes del sistema cardiovascular?
-      - ¿Qué enfermedades puede tener el corazón?
-      - Dime enfermedades del sistema cardiovascular
+      - cuales son las enfermedades mas comunes del sistema cardiovascular
+      - que enfermedades puede tener el corazon
+      - dime enfermedades del sistema cardiovascular
 
   - intent: sintomas_problemas
     examples: |
-      - ¿Cuáles son los síntomas de problemas cardíacos?
-      - ¿Cómo sé si tengo un problema en el corazón?
-      - ¿Qué señales indican una enfermedad cardiovascular?
+      - cuales son los sintomas de problemas cardiacos
+      - como se si tengo un problema en el corazon
+      - que senales indican una enfermedad cardiovascular
 
   - intent: prevencion
     examples: |
-      - ¿Cómo puedo cuidar mi sistema cardiovascular?
-      - ¿Qué puedo hacer para prevenir enfermedades cardíacas?
-      - ¿Cómo mantengo mi corazón sano?
+      - como puedo cuidar mi sistema cardiovascular
+      - que puedo hacer para prevenir enfermedades cardiacas
+      - como mantengo mi corazon sano
       - si dame un concejo de prevencion
       - dame un consejo de prevencion
 
   - intent: alimentacion_saludable
     examples: |
-      - ¿Qué alimentos son buenos para el corazón?
-      - ¿Qué debo comer para tener buena salud cardiovascular?
-      - ¿Qué dieta recomiendas para el sistema cardiovascular?
+      - que alimentos son buenos para el corazon
+      - que debo comer para tener buena salud cardiovascular
+      - que dieta recomiendas para el sistema cardiovascular
 
   - intent: ejercicio_recomendado
     examples: |
-      - ¿Qué ejercicios ayudan al corazón?
-      - ¿Cuánto ejercicio debo hacer?
-      - ¿Qué tipo de actividad física mejora la salud cardiovascular?
+      - que ejercicios ayudan al corazon
+      - cuanto ejercicio debo hacer
+      - que tipo de actividad fisica mejora la salud cardiovascular
 
   - intent: factores_riesgo
     examples: |
-      - ¿Qué factores aumentan el riesgo de enfermedad cardiovascular?
-      - ¿Qué cosas son peligrosas para el corazón?
-      - ¿Por qué hay personas con más riesgo de infarto?
+      - que factores aumentan el riesgo de enfermedad cardiovascular
+      - que cosas son peligrosas para el corazon
+      - por que hay personas con mas riesgo de infarto
 
   - intent: eres_bot
     examples: |
-      - ¿eres un bot?
-      - ¿eres un robot?
-      - ¿eres una inteligencia artificial?
-      - ¿eres una IA?
-      - ¿eres un asistente virtual?
+      - eres un bot
+      - eres un robot
+      - eres una inteligencia artificial
+      - eres una ia
+      - eres un asistente virtual
 
   - intent: estado_animo
     examples: |
@@ -105,7 +105,7 @@ nlu:
   - intent: negacion
     examples: |
       - no
-      - no, gracias
+      - no gracias
       - eso es todo
       - no quiero
 
@@ -113,123 +113,117 @@ nlu:
     examples: |
       - tengo dolor de cabeza
       - me duele la cabeza
-      - siento presión en la cabeza
+      - siento presion en la cabeza
 
   - intent: dolor_pecho
     examples: |
-      - Me duele el pecho
-      - Tengo dolor en el pecho
-      - Siento presión en el pecho
-      - Tengo una molestia en el pecho
       - me duele el pecho
-      - dolor en el pecho
-      - siento dolor en el torax
-      - me aprieta el pecho
-      - tengo opresión en el pecho
-      - me duele el corazon
+      - tengo dolor en el pecho
+      - siento presion en el pecho
+      - tengo una molestia en el pecho
 
   - intent: palpitaciones
     examples: |
-      - Siento palpitaciones
-      - Tengo el corazón acelerado
-      - Me late muy rápido el corazón
-      - Siento el corazón fuerte
+      - siento palpitaciones
+      - tengo el corazon acelerado
+      - me late muy rapido el corazon
+      - siento el corazon fuerte
 
   - intent: mareo
     examples: |
-      - Estoy mareado
-      - Me siento mareado
-      - Tengo mareo
-      - Me da vértigo
+      - estoy mareado
+      - me siento mareado
+      - tengo mareo
+      - me da vertigo
       - siento que todo me da vueltas
 
   - intent: falta_aire
     examples: |
-      - Me falta el aire
-      - Me cuesta respirar
-      - Tengo dificultad para respirar
-      - Me ahogo al caminar
+      - me falta el aire
+      - me cuesta respirar
+      - tengo dificultad para respirar
+      - me ahogo al caminar
 
   - intent: fatiga
     examples: |
-      - Me siento cansado
-      - Estoy fatigado
-      - Me siento sin energía
-      - Me agoto fácilmente
+      - me siento cansado
+      - estoy fatigado
+      - me siento sin energia
+      - me agoto facilmente
 
   - intent: dolor_brazo_izquierdo
     examples: |
-      - Me duele el brazo izquierdo
-      - Tengo molestia en el brazo izquierdo
-      - Siento hormigueo en el brazo izquierdo
+      - me duele el brazo izquierdo
+      - tengo molestia en el brazo izquierdo
+      - siento hormigueo en el brazo izquierdo
 
   - intent: dolor_cuello
     examples: |
-      - Me duele el cuello
-      - Tengo presión en el cuello
-      - Siento rigidez en el cuello
+      - me duele el cuello
+      - tengo presion en el cuello
+      - siento rigidez en el cuello
 
   - intent: pies_hinchados
     examples: |
-      - Tengo los pies hinchados
-      - Me despierto con los pies hinchados
-      - Se me hinchan los pies
+      - tengo los pies hinchados
+      - me despierto con los pies hinchados
+      - se me hinchan los pies
 
   - intent: labios_morados
     examples: |
-      - Tengo los labios morados
-      - Mis labios están morados
-      - Se me ponen los labios azules
+      - tengo los labios morados
+      - mis labios estan morados
+      - se me ponen los labios azules
 
   - intent: desmayo
     examples: |
-      - Me desmaye
+      - me desmaye
       - senti que me desmayaba
-      - Me sentí a punto de desmayarme
-      - Casi me desmayo
+      - me senti a punto de desmayarme
+      - casi me desmayo
 
   - intent: ansiedad_cardiaca
     examples: |
-      - Me siento ansioso y el corazón me late rápido
-      - Me pongo nervioso y el corazón se acelera
-      - Siento ansiedad y palpitaciones
+      - me siento ansioso y el corazon me late rapido
+      - me pongo nervioso y el corazon se acelera
+      - siento ansiedad y palpitaciones
 
   - intent: presion_alta
     examples: |
-      - Tengo la presión alta
-      - Me subió la presión
-      - Tengo hipertensión
+      - tengo la presion alta
+      - me subio la presion
+      - tengo hipertension
 
   - intent: presion_baja
     examples: |
-      - Tengo la presión baja
-      - Me siento débil por la presión
-      - Tengo hipotensión
+      - tengo la presion baja
+      - me siento debil por la presion
+      - tengo hipotension
 
   - intent: dolor_esfuerzo
     examples: |
-      - Me duele el pecho al hacer esfuerzo
-      - Siento dolor al subir escaleras
-      - Me da dolor cuando camino rápido
+      - me duele el pecho al hacer esfuerzo
+      - siento dolor al subir escaleras
+      - me da dolor cuando camino rapido
 
   - intent: hormigueo
     examples: |
-      - Siento hormigueo
-      - Tengo hormigueo en el cuerpo
-      - Me hormiguea el brazo o la mano
+      - siento hormigueo
+      - tengo hormigueo en el cuerpo
+      - me hormiguea el brazo o la mano
 
   - intent: nauseas
     examples: |
-      - Tengo náuseas
-      - Siento ganas de vomitar
-      - Me siento con el estómago revuelto
+      - tengo nauseas
+      - siento ganas de vomitar
+      - me siento con el estomago revuelto
 
   - intent: recomendacion_general
     examples: |
-      - Qué puedo hacer para cuidar mi corazón
-      - Dame algunos consejos
-      - Recomendaciones para estar sano
-      - Cómo cuido mi corazón
+      - que puedo hacer para cuidar mi corazon
+      - dame algunos consejos
+      - recomendaciones para estar sano
+      - como cuido mi corazon
 
   - intent: describir_dolor
     examples: |
@@ -238,102 +232,120 @@ nlu:
       - dolor acomodado
       - dolor constante
       - dolor intenso
-      - dolor constante
 
   - intent: ayuda
     examples: |
-      - qué puedes hacer
-      - cómo me puedes ayudar
-      - en qué me ayudas
+      - que puedes hacer
+      - como me puedes ayudar
+      - en que me ayudas
       - necesito ayuda
 
   - intent: consultar_cita
     examples: |
       - consultar cita
-      - consultar cita medica
+      - consultar mis citas
       - tengo alguna cita medica
-      - cuando es mi cita
-      - tengo cita programada
-      - dime mi proxima cita
-      - quiero saber mi proxima cita
-      - quiero saber mi cita
-      - quiero saber mi cita medica
-      - cuando es mi cita medica
-      - tengo cita?
-      - tengo alguna cita medica?
-      - quiero consultar mi cita
-      - tengo una cita pendiente?
-      - dime si tengo cita
-      - mi numero de identificacion es [1034567890](identificacion)
-      - [9876543210](identificacion)
-      - consultar cita con cedula [1034567890](identificacion)
+      - cuando son mis citas
+      - tengo citas programadas
+      - quiero saber mis citas
+      - cuando tengo citas
+      - ver mis citas
+      - mostrar mis citas
+      - todas mis citas
+      - lista de citas
+      - mis citas programadas
+      - cuantas citas tengo
+      - ver todas mis citas medicas
+      - dame todas mis citas
 
   - intent: consultar_doctor
     examples: |
-      - quién es mi medico asignado
-      - cuál es mi medico
-      - quién me atenderá
-      - quién es el doctor de mi cita
+      - quien es mi medico asignado
+      - cual es mi medico
+      - quien me atendera
+      - quien es el doctor de mi cita
       - quien es mi doctor
       - que doctor me atiende
       - dime el nombre del medico
-      - quien es mi doctor con cedula [1034567890](identificacion)
-      - que medico me atendera, mi identificacion es [9876543210](identificacion)
+
+  - intent: consultar_resultados
+    examples: |
+      - ya estan mis resultados
+      - puedo ver mis resultados medicos
+      - quiero saber mis examenes
+
+  - intent: agregar_otro_sintoma
+    examples: |
+      - tengo otro sintoma
+      - tambien me duele el brazo
+      - y ademas tengo mareo
+      - otro sintoma
+      - quiero agregar otro
+      - tambien siento otra cosa
+
+  - intent: dar_identificacion
+    examples: |
+      - mi identificacion es [1234567890](identificacion)
+      - [1234567890](identificacion)
+      - mi cedula es [1234567890](identificacion)
+      - consultar cita con cedula [1234567890](identificacion)
+      - 1234567890
+      - [0987654321](identificacion)
+      - 1020304050
+      - mi cedula es 4567891230
+      - numero de identificacion 3216549870
+      - mi identificacion es 1234567890
 
   - intent: consultar_historial
     examples: |
-      - quiero ver mi historial médico
-      - muéstrame mi historial
+      - quiero ver mi historial medico
+      - muestrame mi historial
       - ver mi historial
-      - historial médico
-      - mi historial clínico
+      - historial medico
+      - mi historial clinico
       - consultar historial
       - ver historial completo
       - dame mi historial
-      - cuál es mi historial
+      - cual es mi historial
       - historial de consultas
-      - quiero saber mi historial médico
 
   - intent: consultar_ultimo_diagnostico
     examples: |
-      - cuál fue mi último diagnóstico
-      - último diagnóstico
-      - mi diagnóstico más reciente
-      - qué diagnóstico tuve
-      - ver último diagnóstico
-      - consultar diagnóstico
-      - qué dijo el doctor la última vez
-      - cuál es mi diagnóstico actual
-      - mi último resultado médico
-      - diagnóstico reciente
+      - cual fue mi ultimo diagnostico
+      - ultimo diagnostico
+      - mi diagnostico mas reciente
+      - que diagnostico tuve
+      - ver ultimo diagnostico
+      - consultar diagnostico
+      - que dijo el doctor la ultima vez
+      - cual es mi diagnostico actual
+      - mi ultimo resultado medico
 
   - intent: consultar_especialidades
     examples: |
-      - qué especialidades tienen
-      - cuáles son las especialidades disponibles
+      - que especialidades tienen
+      - cuales son las especialidades disponibles
       - ver especialidades
-      - especialidades médicas
-      - qué especialidades hay
+      - especialidades medicas
+      - que especialidades hay
       - mostrar especialidades
       - listar especialidades
       - especialidades del hospital
-      - qué doctores tienen
-      - tipos de especialistas
 
   - intent: consultar_datos_paciente
     examples: |
       - ver mis datos
       - mis datos personales
-      - información de mi perfil
+      - informacion de mi perfil
       - consultar mis datos
-      - mi información médica
+      - mi informacion medica
       - ver mi perfil
       - mis datos de paciente
-      - cuáles son mis datos
-      - muestra mi información
+      - cuales son mis datos
+      - muestra mi informacion
       - datos del paciente
       - mi peso y talla
-      - mi información personal
+      - mi informacion personal
 
   - intent: consultar_citas_anteriores
     examples: |
@@ -346,63 +358,82 @@ nlu:
       - ver citas viejas
       - mis consultas pasadas
       - citas ya realizadas
-      - historial de consultas médicas
+      - historial de consultas medicas
 
   - intent: consultar_recomendaciones
     examples: |
       - ver mis recomendaciones
-      - recomendaciones médicas
+      - recomendaciones medicas
       - que me recomendaron
+      - que me recomendo el doctor
       - mis ultimas recomendaciones
       - consultar recomendaciones
       - que debo hacer segun el doctor
       - ver recomendaciones del medico
       - tratamiento recomendado
       - mis indicaciones medicas
+      - cuales son mis recomendaciones
+      - dame mis recomendaciones
+      - indicaciones del medico
+      - que indicaciones tengo
+      - ver tratamiento
+      - mis recomendaciones de salud
 
   - intent: consultar_medicos_especialidad
     examples: |
-      - qué médicos hay
-      - ver médicos disponibles
-      - médicos por especialidad
+      - que medicos hay
+      - ver medicos disponibles
+      - medicos por especialidad
       - quiero ver los doctores
-      - lista de médicos
-      - médicos de cardiología
+      - lista de medicos
       - doctores disponibles
       - especialistas disponibles
-      - quiénes son los médicos
-      - ver doctores de la clínica
+      - quienes son los medicos
+      - ver doctores de la clinica
+      - cuantos medicos hay
+      - medicos disponibles
+      - dame la lista de doctores
+      - mostrar medicos
+      - ver todos los medicos
+      - medicos de electrofisiologia
+      - doctores de electrofisiologia
+      - especialistas en electrofisiologia
+      - ver medicos de electrofisiologia
+      - quiero medicos de electrofisiologia
+      - medicos electrofisiologia
+      - medicos de medicina general
+      - doctores de medicina general
+      - especialistas en medicina general
+      - ver medicos de medicina general
+      - medicos medicina general
+      - medicos de cardiologia
+      - doctores de cardiologia
+      - especialistas cardiologos
 
   - intent: consultar_proxima_cita
     examples: |
-      - cuál es mi próxima cita
-      - próxima cita
+      - cual es mi proxima cita
+      - proxima cita
       - mi siguiente cita
-      - cuando es mi próxima consulta
-      - ver próxima cita
-      - siguiente cita médica
-      - cuándo tengo cita
-      - mi cita más cercana
-      - próxima consulta médica
+      - cuando es mi proxima consulta
+      - ver proxima cita
+      - siguiente cita medica
+      - cuando tengo la proxima cita
+      - mi cita mas cercana
+      - proxima consulta medica
+      - mi cita mas proxima
+      - la cita que viene
+      - siguiente consulta
+      - cual es mi siguiente cita medica
+      - cuando es mi siguiente cita
+      - proxima cita medica
+      - mi proxima consulta
+      - la proxima vez que tengo cita
+      - cuando tengo cita proxima
 
-  - intent: agregar_otro_sintoma
+  - intent: consejos
     examples: |
-      - tengo otro síntoma
-      - también me duele el brazo
-      - y además tengo mareo
-      - otro síntoma
-      - quiero agregar otro
-      - también siento otra cosa
-
-  - intent: dar_identificacion
-    examples: |
-      - mi identificacion es [1234567890](identificacion)
-      - [1234567890](identificacion)
-      - mi cedula es [1234567890](identificacion)
-      - consultar cita con cédula [1234567890](identificacion)
-      - 1234567890
-      - [0987654321](identificacion)
-      - 1020304050
-      - mi cédula es 4567891230
-      - número de identificación: 3216549870
-      - mi identificacion es 1234567890
+      - dame consejos
+      - quiero consejos
+      - consejos de salud
+      - dame tips
